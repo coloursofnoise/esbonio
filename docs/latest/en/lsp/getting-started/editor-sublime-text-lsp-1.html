@@ -1,0 +1,54 @@
+<p>
+Basic configuration for the language server is provided through the
+
+<a class="reference external" href="https://github.com/sublimelsp/LSP">
+LSP
+</a>
+ plugin
+</p>
+
+
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;clients&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;esbonio&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;esbonio&quot;</span><span class="p">],</span>
+<span class="w">            </span><span class="nt">&quot;selector&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;text.restructuredtext&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;initializationOptions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;server&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;logLevel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;debug&quot;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<p>
+The server language executable can be overridden per project basis; refer to
+
+<a class="reference external" href="https://www.sublimetext.com/docs/projects.html">
+Sublime Text Projects documentation
+</a>
+
+.
+</p>
+
+
+<p>
+Alternatively, you can change the default command to launch the language sever with a particular
+interpreter
+</p>
+
+
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;clients&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;esbonio&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">&quot;/path/to/virtualenv/bin/python&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;-m&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;esbonio&quot;</span>
+<span class="w">        </span><span class="p">],</span>
+</pre></div>
+</div>

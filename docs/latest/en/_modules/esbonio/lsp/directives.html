@@ -4,10 +4,10 @@
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" />
 
-    <link rel="shortcut icon" href="../../../_static/favicon.svg"/><meta name="generator" content="sphinx-5.3.0, furo 2022.09.29"/>
+    <link rel="shortcut icon" href="../../../_static/favicon.svg"/><!-- Generated with Sphinx 6.0.0 and Furo 2022.12.07 -->
         <title>esbonio.lsp.directives - Esbonio</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?digest=d81277517bee4d6b0349d71bb2661d4890b5617c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?digest=91d0f0d1c444bdcb17a68e833c7a53903343c195" />
     <link rel="stylesheet" type="text/css" href="../../../_static/autodoc_pydantic.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
@@ -147,7 +147,7 @@
   <aside class="sidebar-drawer">
     <div class="sidebar-container">
       
-      <div class="sidebar-sticky"><a class="sidebar-brand centered" href="../../../index.html">
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../../index.html">
   
   <div class="sidebar-logo-container">
     <img class="sidebar-logo" src="../../../_static/io.github.swyddfa.Esbonio.svg" alt="Logo"/>
@@ -156,7 +156,7 @@
   <span class="sidebar-brand-text">Esbonio</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
-  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
   <input type="hidden" name="check_keywords" value="yes">
   <input type="hidden" name="area" value="default">
 </form>
@@ -268,12 +268,12 @@
 
 
 <div class="viewcode-block" id="DirectiveLanguageFeature"><a class="viewcode-back" href="../../../lsp/extending/directives.html#esbonio.lsp.directives.DirectiveLanguageFeature">[docs]</a><span class="k">class</span> <span class="nc">DirectiveLanguageFeature</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Base class for directive language features.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Base class for directive language features.&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="DirectiveLanguageFeature.complete_arguments"><a class="viewcode-back" href="../../../lsp/extending/directives.html#esbonio.lsp.directives.DirectiveLanguageFeature.complete_arguments">[docs]</a>    <span class="k">def</span> <span class="nf">complete_arguments</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">CompletionContext</span><span class="p">,</span> <span class="n">domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">CompletionItem</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Return a list of completion items representing valid targets for the given</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a list of completion items representing valid targets for the given</span>
 <span class="sd">        directive.</span>
 
 <span class="sd">        Parameters</span>
@@ -290,23 +290,23 @@
 <div class="viewcode-block" id="DirectiveLanguageFeature.get_implementation"><a class="viewcode-back" href="../../../lsp/extending/directives.html#esbonio.lsp.directives.DirectiveLanguageFeature.get_implementation">[docs]</a>    <span class="k">def</span> <span class="nf">get_implementation</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">directive</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">domain</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Directive</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Return the implementation for the given directive name.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the implementation for the given directive name.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">index_directives</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">directive</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="DirectiveLanguageFeature.index_directives"><a class="viewcode-back" href="../../../lsp/extending/directives.html#esbonio.lsp.directives.DirectiveLanguageFeature.index_directives">[docs]</a>    <span class="k">def</span> <span class="nf">index_directives</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Directive</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Return all known directives.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return all known directives.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">dict</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="DirectiveLanguageFeature.suggest_directives"><a class="viewcode-back" href="../../../lsp/extending/directives.html#esbonio.lsp.directives.DirectiveLanguageFeature.suggest_directives">[docs]</a>    <span class="k">def</span> <span class="nf">suggest_directives</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">CompletionContext</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Directive</span><span class="p">]]:</span>
-        <span class="sd">&quot;&quot;&quot;Suggest directives that may be used, given a completion context.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Suggest directives that may be used, given a completion context.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">index_directives</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="DirectiveLanguageFeature.suggest_options"><a class="viewcode-back" href="../../../lsp/extending/directives.html#esbonio.lsp.directives.DirectiveLanguageFeature.suggest_options">[docs]</a>    <span class="k">def</span> <span class="nf">suggest_options</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">CompletionContext</span><span class="p">,</span> <span class="n">directive</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">domain</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Suggest options that may be used, given a completion context.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Suggest options that may be used, given a completion context.&quot;&quot;&quot;</span>
 
         <span class="n">impl</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_implementation</span><span class="p">(</span><span class="n">directive</span><span class="p">,</span> <span class="n">domain</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">impl</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -322,7 +322,7 @@
         <span class="n">domain</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
         <span class="n">argument</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
-        <span class="sd">&quot;&quot;&quot;Resolve a document link request for the given argument.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Resolve a document link request for the given argument.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -347,7 +347,7 @@
         <span class="n">domain</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
         <span class="n">argument</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Location</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Return a list of locations representing definitions of the given argument.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a list of locations representing definitions of the given argument.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -367,7 +367,7 @@
 
 
 <div class="viewcode-block" id="ArgumentCompletion"><a class="viewcode-back" href="../../../lsp/extending/directives.html#esbonio.lsp.directives.ArgumentCompletion">[docs]</a><span class="k">class</span> <span class="nc">ArgumentCompletion</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;A completion provider for directive arguments.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A completion provider for directive arguments.</span>
 
 <span class="sd">    .. deprecated:: 0.14.2</span>
 
@@ -378,7 +378,7 @@
 <div class="viewcode-block" id="ArgumentCompletion.complete_arguments"><a class="viewcode-back" href="../../../lsp/extending/directives.html#esbonio.lsp.directives.ArgumentCompletion.complete_arguments">[docs]</a>    <span class="k">def</span> <span class="nf">complete_arguments</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">CompletionContext</span><span class="p">,</span> <span class="n">domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">CompletionItem</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Return a list of completion items representing valid targets for the given</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a list of completion items representing valid targets for the given</span>
 <span class="sd">        directive.</span>
 
 <span class="sd">        Parameters</span>
@@ -393,7 +393,7 @@
 
 
 <div class="viewcode-block" id="ArgumentDefinition"><a class="viewcode-back" href="../../../lsp/extending/directives.html#esbonio.lsp.directives.ArgumentDefinition">[docs]</a><span class="k">class</span> <span class="nc">ArgumentDefinition</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;A definition provider for directive arguments.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A definition provider for directive arguments.</span>
 
 <span class="sd">    .. deprecated:: 0.14.2</span>
 
@@ -408,7 +408,7 @@
         <span class="n">domain</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
         <span class="n">argument</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Location</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Return a list of locations representing definitions of the given argument.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a list of locations representing definitions of the given argument.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -424,7 +424,7 @@
 
 
 <div class="viewcode-block" id="ArgumentLink"><a class="viewcode-back" href="../../../lsp/extending/directives.html#esbonio.lsp.directives.ArgumentLink">[docs]</a><span class="k">class</span> <span class="nc">ArgumentLink</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;A document link resolver for directive arguments.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A document link resolver for directive arguments.</span>
 
 <span class="sd">    .. deprecated:: 0.14.2</span>
 
@@ -439,7 +439,7 @@
         <span class="n">domain</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
         <span class="n">argument</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
-        <span class="sd">&quot;&quot;&quot;Resolve a document link request for the given argument.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Resolve a document link request for the given argument.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -455,19 +455,19 @@
 
 
 <div class="viewcode-block" id="Directives"><a class="viewcode-back" href="../../../lsp/extending/directives.html#esbonio.lsp.directives.Directives">[docs]</a><span class="k">class</span> <span class="nc">Directives</span><span class="p">(</span><span class="n">LanguageFeature</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Directive support for the language server.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Directive support for the language server.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_documentation</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="sd">&quot;&quot;&quot;Cache for documentation.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Cache for documentation.&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_features</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">DirectiveLanguageFeature</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="sd">&quot;&quot;&quot;The collection of registered features.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The collection of registered features.&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="Directives.add_feature"><a class="viewcode-back" href="../../../lsp/extending/directives.html#esbonio.lsp.directives.Directives.add_feature">[docs]</a>    <span class="k">def</span> <span class="nf">add_feature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">feature</span><span class="p">:</span> <span class="n">DirectiveLanguageFeature</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Register a directive language feature.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Register a directive language feature.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -478,12 +478,12 @@
 
         <span class="c1"># Create an unique key for this instance.</span>
         <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_features</span><span class="p">:</span>
-            <span class="n">key</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;.</span><span class="si">{</span><span class="nb">len</span><span class="p">([</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_features</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">key</span><span class="p">)])</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="n">key</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;.</span><span class="si">{</span><span class="nb">len</span><span class="p">([</span><span class="n">k</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="bp">self</span><span class="o">.</span><span class="n">_features</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">key</span><span class="p">)])</span><span class="si">}</span><span class="s2">&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_features</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">feature</span></div>
 
 <div class="viewcode-block" id="Directives.add_argument_completion_provider"><a class="viewcode-back" href="../../../lsp/extending/directives.html#esbonio.lsp.directives.Directives.add_argument_completion_provider">[docs]</a>    <span class="k">def</span> <span class="nf">add_argument_completion_provider</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">provider</span><span class="p">:</span> <span class="n">ArgumentCompletion</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Register an :class:`~esbonio.lsp.directives.ArgumentCompletion` provider.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Register an :class:`~esbonio.lsp.directives.ArgumentCompletion` provider.</span>
 
 <span class="sd">        .. deprecated:: 0.14.2</span>
 
@@ -516,7 +516,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_features</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">feature</span></div>
 
 <div class="viewcode-block" id="Directives.add_argument_definition_provider"><a class="viewcode-back" href="../../../lsp/extending/directives.html#esbonio.lsp.directives.Directives.add_argument_definition_provider">[docs]</a>    <span class="k">def</span> <span class="nf">add_argument_definition_provider</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">provider</span><span class="p">:</span> <span class="n">ArgumentDefinition</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Register an :class:`~esbonio.lsp.directives.ArgumentDefinition` provider.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Register an :class:`~esbonio.lsp.directives.ArgumentDefinition` provider.</span>
 
 <span class="sd">        .. deprecated:: 0.14.2</span>
 
@@ -549,7 +549,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_features</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">feature</span></div>
 
 <div class="viewcode-block" id="Directives.add_argument_link_provider"><a class="viewcode-back" href="../../../lsp/extending/directives.html#esbonio.lsp.directives.Directives.add_argument_link_provider">[docs]</a>    <span class="k">def</span> <span class="nf">add_argument_link_provider</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">provider</span><span class="p">:</span> <span class="n">ArgumentLink</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Register an :class:`~esbonio.lsp.directives.ArgumentLink` provider.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Register an :class:`~esbonio.lsp.directives.ArgumentLink` provider.</span>
 
 <span class="sd">        .. deprecated:: 0.14.2</span>
 
@@ -582,7 +582,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_features</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">feature</span></div>
 
 <div class="viewcode-block" id="Directives.add_documentation"><a class="viewcode-back" href="../../../lsp/extending/directives.html#esbonio.lsp.directives.Directives.add_documentation">[docs]</a>    <span class="k">def</span> <span class="nf">add_documentation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">documentation</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Register directive documentation.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Register directive documentation.</span>
 
 <span class="sd">        ``documentation`` should be a dictionary with the following structure ::</span>
 
@@ -660,7 +660,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_documentation</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">doc</span></div>
 
 <div class="viewcode-block" id="Directives.get_directives"><a class="viewcode-back" href="../../../lsp/extending/directives.html#esbonio.lsp.directives.Directives.get_directives">[docs]</a>    <span class="k">def</span> <span class="nf">get_directives</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Directive</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Return a dictionary of all known directives.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a dictionary of all known directives.&quot;&quot;&quot;</span>
 
         <span class="n">directives</span> <span class="o">=</span> <span class="p">{}</span>
 
@@ -679,7 +679,7 @@
 <div class="viewcode-block" id="Directives.get_implementation"><a class="viewcode-back" href="../../../lsp/extending/directives.html#esbonio.lsp.directives.Directives.get_implementation">[docs]</a>    <span class="k">def</span> <span class="nf">get_implementation</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">directive</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">domain</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Directive</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Return the implementation of a directive given its name</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the implementation of a directive given its name</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -716,7 +716,7 @@
 <div class="viewcode-block" id="Directives.suggest_directives"><a class="viewcode-back" href="../../../lsp/extending/directives.html#esbonio.lsp.directives.Directives.suggest_directives">[docs]</a>    <span class="k">def</span> <span class="nf">suggest_directives</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">CompletionContext</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Directive</span><span class="p">]]:</span>
-        <span class="sd">&quot;&quot;&quot;Suggest directives that may be used, given a completion context.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Suggest directives that may be used, given a completion context.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -737,7 +737,7 @@
 <div class="viewcode-block" id="Directives.suggest_options"><a class="viewcode-back" href="../../../lsp/extending/directives.html#esbonio.lsp.directives.Directives.suggest_options">[docs]</a>    <span class="k">def</span> <span class="nf">suggest_options</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">CompletionContext</span><span class="p">,</span> <span class="n">directive</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">domain</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Suggest directive options that may be used, given a completion context.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Suggest directive options that may be used, given a completion context.&quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="n">domain</span><span class="p">:</span>
             <span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">domain</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">directive</span><span class="si">}</span><span class="s2">&quot;</span>
@@ -1144,7 +1144,7 @@
     <span class="k">def</span> <span class="nf">_get_surrounding_directive</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">CompletionContext</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="s2">&quot;re.Match&quot;</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Used to determine which directive we should be offering completions for.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Used to determine which directive we should be offering completions for.</span>
 
 <span class="sd">        When suggestions should be generated this returns an :class:`python:re.Match`</span>
 <span class="sd">        object representing the directive the options are associated with. In the</span>
@@ -1192,7 +1192,7 @@
 <div class="viewcode-block" id="Directives.get_documentation"><a class="viewcode-back" href="../../../lsp/extending/directives.html#esbonio.lsp.directives.Directives.get_documentation">[docs]</a>    <span class="k">def</span> <span class="nf">get_documentation</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">implementation</span><span class="p">:</span> <span class="nb">str</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
-        <span class="sd">&quot;&quot;&quot;Return the documentation for the given directive, if available.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the documentation for the given directive, if available.</span>
 
 <span class="sd">        If documentation for the given ``label`` cannot be found, this function will also</span>
 <span class="sd">        look for the label under the project&#39;s :confval:`sphinx:primary_domain` followed</span>
@@ -1255,9 +1255,7 @@
             
           </div>
           <div class="right-details">
-            <div class="icons">
-              
-            </div>
+            
           </div>
         </div>
         
@@ -1270,9 +1268,6 @@
     </aside>
   </div>
 </div><script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-    <script src="../../../_static/jquery.js"></script>
-    <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/scripts/furo.js"></script>

@@ -5,10 +5,10 @@
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 <link rel="index" title="Indecs" href="../../../genindex.html" /><link rel="search" title="Chwilio" href="../../../search.html" /><link rel="next" title="API Reference" href="../api-reference.html" /><link rel="prev" title="Roles" href="../roles.html" />
 
-    <link rel="shortcut icon" href="../../../_static/favicon.svg"/><meta name="generator" content="sphinx-5.3.0, furo 2022.09.29"/>
+    <link rel="shortcut icon" href="../../../_static/favicon.svg"/><!-- Generated with Sphinx 6.0.0 and Furo 2022.12.07 -->
         <title>Supporting Custom Role Registries - Esbonio</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?digest=d81277517bee4d6b0349d71bb2661d4890b5617c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?digest=91d0f0d1c444bdcb17a68e833c7a53903343c195" />
     <link rel="stylesheet" type="text/css" href="../../../_static/autodoc_pydantic.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
@@ -148,7 +148,7 @@
   <aside class="sidebar-drawer">
     <div class="sidebar-container">
       
-      <div class="sidebar-sticky"><a class="sidebar-brand centered" href="../../../index.html">
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../../index.html">
   
   <div class="sidebar-logo-container">
     <img class="sidebar-logo" src="../../../_static/io.github.swyddfa.Esbonio.svg" alt="Logo"/>
@@ -157,7 +157,7 @@
   <span class="sidebar-brand-text">Esbonio</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
-  <input class="sidebar-search" placeholder=Chwilio name="q" aria-label="Chwilio">
+  <input class="sidebar-search" placeholder="Chwilio" name="q" aria-label="Chwilio">
   <input type="hidden" name="check_keywords" value="yes">
   <input type="hidden" name="area" value="default">
 </form>
@@ -285,7 +285,7 @@ This method should return a dictionary where the keys are the canonical name of 
 </div>
 <p>In the case of Sphinx domains a role's canonical name is of the form <code class="docutils literal notranslate"><span class="pre">&lt;domain&gt;:&lt;role&gt;</span></code> e.g. <code class="docutils literal notranslate"><span class="pre">py:func</span></code> or <code class="docutils literal notranslate"><span class="pre">c:macro</span></code>.</p>
 <p>This is the bare minimum required to make the language server aware of your custom roles, in fact if you were to try the above implementation you would already find completions being offered for domain based roles.
-However, you would also notice that the short form of roles (e.g. <code class="docutils literal notranslate"><span class="pre">func</span></code>) in the <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#domains-std" title="(yn Sphinx v6.0.0b3)"><span class="xref std std-ref">standard</span></a> and <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-primary_domain" title="(yn Sphinx v6.0.0b3)"><code class="xref std std-confval docutils literal notranslate"><span class="pre">primary</span></code></a> domains are not included in the list of completions - despite being valid.</p>
+However, you would also notice that the short form of roles (e.g. <code class="docutils literal notranslate"><span class="pre">func</span></code>) in the <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#domains-std" title="(yn Sphinx v6.0.1)"><span class="xref std std-ref">standard</span></a> and <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-primary_domain" title="(yn Sphinx v6.0.1)"><code class="xref std std-confval docutils literal notranslate"><span class="pre">primary</span></code></a> domains are not included in the list of completions - despite being valid.</p>
 <p>To remedy this, you might be tempted to start adding multiple entries to the dictionary, one for each valid name <strong>do not do this.</strong>
 Instead you can implement the <a class="reference internal" href="../roles.html#esbonio.lsp.roles.RoleLanguageFeature.suggest_roles" title="esbonio.lsp.roles.RoleLanguageFeature.suggest_roles"><code class="xref py py-meth docutils literal notranslate"><span class="pre">suggest_roles()</span></code></a> method which solves this exact use case.</p>
 <div class="admonition tip">
@@ -303,7 +303,7 @@ Instead you can implement the <a class="reference internal" href="../roles.html#
 It can be used to tailor the list of roles that are offered to the user, depending on the current context.
 Each <code class="docutils literal notranslate"><span class="pre">RoleLanguageFeature</span></code> has a default implementation, which may be sufficient depending on your use case:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">suggest_roles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">CompletionContext</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
-    <span class="sd">&quot;&quot;&quot;Suggest roles that may be used, given a completion context.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Suggest roles that may be used, given a completion context.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">index_roles</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -332,7 +332,7 @@ This is due to the language server not knowing which class implements these shor
 This powers features such as documentation hovers and goto implementation.
 As with <code class="docutils literal notranslate"><span class="pre">suggest_roles</span></code>, each <code class="docutils literal notranslate"><span class="pre">RoleLanguageFeature</span></code> has a default implementation which may be sufficient for your use case:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_implementation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">role</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">domain</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
-    <span class="sd">&quot;&quot;&quot;Return the implementation for the given role name.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the implementation for the given role name.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">index_roles</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">role</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -391,9 +391,7 @@ As with <code class="docutils literal notranslate"><span class="pre">suggest_rol
             
           </div>
           <div class="right-details">
-            <div class="icons">
-              
-            </div>
+            
           </div>
         </div>
         
@@ -427,9 +425,6 @@ As with <code class="docutils literal notranslate"><span class="pre">suggest_rol
     </aside>
   </div>
 </div><script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-    <script src="../../../_static/jquery.js"></script>
-    <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/scripts/furo.js"></script>

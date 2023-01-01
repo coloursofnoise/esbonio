@@ -21,9 +21,9 @@ open an
 </p>
 
 
-<div class="highlight-elisp notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nb">require</span><span class="w"> </span><span class="ss">&#39;eglot</span><span class="p">)</span><span class="w"></span>
-<span class="p">(</span><span class="nv">add-to-list</span><span class="w"> </span><span class="ss">&#39;eglot-server-programs</span><span class="w"></span>
-<span class="w">             </span><span class="o">`</span><span class="p">(</span><span class="nv">rst-mode</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="p">(</span><span class="o">,</span><span class="p">(</span><span class="nv">executable-find</span><span class="w"> </span><span class="s">&quot;python3&quot;</span><span class="p">)</span><span class="w"> </span><span class="s">&quot;-m&quot;</span><span class="w"> </span><span class="s">&quot;esbonio&quot;</span><span class="p">)))</span><span class="w"></span>
-<span class="p">(</span><span class="nv">add-hook</span><span class="w"> </span><span class="ss">&#39;rst-mode-hook</span><span class="w"> </span><span class="ss">&#39;eglot-ensure</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-elisp notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nb">require</span><span class="w"> </span><span class="ss">&#39;eglot</span><span class="p">)</span>
+<span class="p">(</span><span class="nv">add-to-list</span><span class="w"> </span><span class="ss">&#39;eglot-server-programs</span>
+<span class="w">             </span><span class="o">`</span><span class="p">(</span><span class="nv">rst-mode</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="p">(</span><span class="o">,</span><span class="p">(</span><span class="nv">executable-find</span><span class="w"> </span><span class="s">&quot;python3&quot;</span><span class="p">)</span><span class="w"> </span><span class="s">&quot;-m&quot;</span><span class="w"> </span><span class="s">&quot;esbonio&quot;</span><span class="p">)))</span>
+<span class="p">(</span><span class="nv">add-hook</span><span class="w"> </span><span class="ss">&#39;rst-mode-hook</span><span class="w"> </span><span class="ss">&#39;eglot-ensure</span><span class="p">)</span>
 </pre></div>
 </div>

@@ -4,10 +4,10 @@
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><link rel="index" title="Indecs" href="../../../genindex.html" /><link rel="search" title="Chwilio" href="../../../search.html" />
 
-    <link rel="shortcut icon" href="../../../_static/favicon.svg"/><meta name="generator" content="sphinx-5.3.0, furo 2022.09.29"/>
+    <link rel="shortcut icon" href="../../../_static/favicon.svg"/><!-- Generated with Sphinx 6.0.0 and Furo 2022.12.07 -->
         <title>esbonio.lsp.testing - Esbonio</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?digest=d81277517bee4d6b0349d71bb2661d4890b5617c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?digest=91d0f0d1c444bdcb17a68e833c7a53903343c195" />
     <link rel="stylesheet" type="text/css" href="../../../_static/autodoc_pydantic.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
@@ -147,7 +147,7 @@
   <aside class="sidebar-drawer">
     <div class="sidebar-container">
       
-      <div class="sidebar-sticky"><a class="sidebar-brand centered" href="../../../index.html">
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../../index.html">
   
   <div class="sidebar-logo-container">
     <img class="sidebar-logo" src="../../../_static/io.github.swyddfa.Esbonio.svg" alt="Logo"/>
@@ -156,7 +156,7 @@
   <span class="sidebar-brand-text">Esbonio</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
-  <input class="sidebar-search" placeholder=Chwilio name="q" aria-label="Chwilio">
+  <input class="sidebar-search" placeholder="Chwilio" name="q" aria-label="Chwilio">
   <input type="hidden" name="check_keywords" value="yes">
   <input type="hidden" name="area" value="default">
 </form>
@@ -254,7 +254,7 @@
 
 
 <div class="viewcode-block" id="make_esbonio_client"><a class="viewcode-back" href="../../../lsp/extending/api-reference.html#esbonio.lsp.testing.make_esbonio_client">[docs]</a><span class="k">def</span> <span class="nf">make_esbonio_client</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Client</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Construct a pytest-lsp client that is aware of esbonio specific messages&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Construct a pytest-lsp client that is aware of esbonio specific messages&quot;&quot;&quot;</span>
     <span class="n">client</span> <span class="o">=</span> <span class="n">make_test_client</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     <span class="n">client</span><span class="o">.</span><span class="n">feature</span><span class="p">(</span><span class="s2">&quot;esbonio/buildStart&quot;</span><span class="p">)(</span><span class="n">_noop</span><span class="p">)</span>
     <span class="n">client</span><span class="o">.</span><span class="n">feature</span><span class="p">(</span><span class="s2">&quot;esbonio/buildComplete&quot;</span><span class="p">)(</span><span class="n">_noop</span><span class="p">)</span>
@@ -269,7 +269,7 @@
     <span class="n">gt</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">gte</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Helper function for determining which version of Sphinx we are</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Helper function for determining which version of Sphinx we are</span>
 <span class="sd">    testing with.</span>
 
 <span class="sd">    .. note::</span>
@@ -321,7 +321,7 @@
 
 
 <div class="viewcode-block" id="directive_argument_patterns"><a class="viewcode-back" href="../../../lsp/extending/api-reference.html#esbonio.lsp.testing.directive_argument_patterns">[docs]</a><span class="k">def</span> <span class="nf">directive_argument_patterns</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">partial</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-    <span class="sd">&quot;&quot;&quot;Return a number of example directive argument patterns.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return a number of example directive argument patterns.</span>
 
 <span class="sd">    These correspond to test cases where directive argument suggestions should be</span>
 <span class="sd">    generated.</span>
@@ -337,7 +337,7 @@
 
 
 <div class="viewcode-block" id="role_patterns"><a class="viewcode-back" href="../../../lsp/extending/api-reference.html#esbonio.lsp.testing.role_patterns">[docs]</a><span class="k">def</span> <span class="nf">role_patterns</span><span class="p">(</span><span class="n">partial</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-    <span class="sd">&quot;&quot;&quot;Return a number of example role patterns.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return a number of example role patterns.</span>
 
 <span class="sd">    These correspond to when role suggestions should be generated.</span>
 
@@ -366,7 +366,7 @@
 <div class="viewcode-block" id="role_target_patterns"><a class="viewcode-back" href="../../../lsp/extending/api-reference.html#esbonio.lsp.testing.role_target_patterns">[docs]</a><span class="k">def</span> <span class="nf">role_target_patterns</span><span class="p">(</span>
     <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">partial</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">include_modifiers</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-    <span class="sd">&quot;&quot;&quot;Return a number of example role target patterns.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return a number of example role target patterns.</span>
 
 <span class="sd">    These correspond to test cases where role target suggestions should be generated.</span>
 
@@ -404,7 +404,7 @@
 
 
 <div class="viewcode-block" id="intersphinx_target_patterns"><a class="viewcode-back" href="../../../lsp/extending/api-reference.html#esbonio.lsp.testing.intersphinx_target_patterns">[docs]</a><span class="k">def</span> <span class="nf">intersphinx_target_patterns</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">project</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-    <span class="sd">&quot;&quot;&quot;Return a number of example intersphinx target patterns.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return a number of example intersphinx target patterns.</span>
 
 <span class="sd">    These correspond to cases where target completions may be generated</span>
 
@@ -433,7 +433,7 @@
 <div class="viewcode-block" id="completion_request"><a class="viewcode-back" href="../../../lsp/extending/api-reference.html#esbonio.lsp.testing.completion_request">[docs]</a><span class="k">async</span> <span class="k">def</span> <span class="nf">completion_request</span><span class="p">(</span>
     <span class="n">client</span><span class="p">:</span> <span class="n">Client</span><span class="p">,</span> <span class="n">test_uri</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">character</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">CompletionList</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">CompletionItem</span><span class="p">],</span> <span class="kc">None</span><span class="p">]:</span>
-    <span class="sd">&quot;&quot;&quot;Make a completion request to a language server.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Make a completion request to a language server.</span>
 
 <span class="sd">    Intended for use within test cases, this function simulates the opening of a</span>
 <span class="sd">    document, inserting some text, triggering a completion request and closing it</span>
@@ -501,7 +501,7 @@
 <div class="viewcode-block" id="hover_request"><a class="viewcode-back" href="../../../lsp/extending/api-reference.html#esbonio.lsp.testing.hover_request">[docs]</a><span class="k">async</span> <span class="k">def</span> <span class="nf">hover_request</span><span class="p">(</span>
     <span class="n">client</span><span class="p">:</span> <span class="n">Client</span><span class="p">,</span> <span class="n">test_uri</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">position</span><span class="p">:</span> <span class="n">Position</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Hover</span><span class="p">]:</span>
-    <span class="sd">&quot;&quot;&quot;Make a hover request to a language server.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Make a hover request to a language server.</span>
 
 <span class="sd">    Intended for use within test cases, this function simulates the opening of a</span>
 <span class="sd">    document containing some text, triggering a hover request and closing it again.</span>
@@ -550,9 +550,7 @@
             
           </div>
           <div class="right-details">
-            <div class="icons">
-              
-            </div>
+            
           </div>
         </div>
         
@@ -565,9 +563,6 @@
     </aside>
   </div>
 </div><script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-    <script src="../../../_static/jquery.js"></script>
-    <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/scripts/furo.js"></script>

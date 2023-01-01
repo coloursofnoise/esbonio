@@ -5,10 +5,10 @@
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 <link rel="index" title="Indecs" href="../../genindex.html" /><link rel="search" title="Chwilio" href="../../search.html" /><link rel="next" title="Shwmae i gyd" href="hello-world.html" /><link rel="prev" title="Tutorial" href="../tutorial.html" />
 
-    <link rel="shortcut icon" href="../../_static/favicon.svg"/><meta name="generator" content="sphinx-5.3.0, furo 2022.09.29"/>
+    <link rel="shortcut icon" href="../../_static/favicon.svg"/><!-- Generated with Sphinx 6.0.0 and Furo 2022.12.07 -->
         <title>Formatting Example - Esbonio</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?digest=d81277517bee4d6b0349d71bb2661d4890b5617c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?digest=91d0f0d1c444bdcb17a68e833c7a53903343c195" />
     <link rel="stylesheet" type="text/css" href="../../_static/autodoc_pydantic.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
@@ -148,7 +148,7 @@
   <aside class="sidebar-drawer">
     <div class="sidebar-container">
       
-      <div class="sidebar-sticky"><a class="sidebar-brand centered" href="../../index.html">
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
   
   <div class="sidebar-logo-container">
     <img class="sidebar-logo" src="../../_static/io.github.swyddfa.Esbonio.svg" alt="Logo"/>
@@ -157,7 +157,7 @@
   <span class="sidebar-brand-text">Esbonio</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
-  <input class="sidebar-search" placeholder=Chwilio name="q" aria-label="Chwilio">
+  <input class="sidebar-search" placeholder="Chwilio" name="q" aria-label="Chwilio">
   <input type="hidden" name="check_keywords" value="yes">
   <input type="hidden" name="area" value="default">
 </form>
@@ -321,7 +321,7 @@ inline code.</p>
 <h3>Literal Blocks<a class="headerlink" href="#literal-blocks" title="Permalink to this heading">#</a></h3>
 <p>A literal block is by default treated as python code and rendered as an executable
 cell in the exported notebook. To change how these blocks are handled, see the
-<a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html#directive-highlight" title="(yn Sphinx v6.0.0b3)"><code class="docutils literal notranslate"><span class="pre">highlight</span></code></a> directive and  <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-highlight_language" title="(yn Sphinx v6.0.0b3)"><code class="docutils literal notranslate"><span class="pre">highlight_language</span></code></a>
+<a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html#directive-highlight" title="(yn Sphinx v6.0.1)"><code class="docutils literal notranslate"><span class="pre">highlight</span></code></a> directive and  <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-highlight_language" title="(yn Sphinx v6.0.1)"><code class="docutils literal notranslate"><span class="pre">highlight_language</span></code></a>
 configuration option for more details:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">sum</span><span class="p">([</span><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)])</span>
 </pre></div>
@@ -335,8 +335,8 @@ blocks inside a markdown cell</p>
 </div>
 <p>Currently this also applies to any block that might otherwise be executable within a
 notebook given the appropriate kernel.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="mf">2</span><span class="p">,</span><span class="mf">3</span><span class="p">].</span><span class="nx">map</span><span class="p">(</span><span class="nx">n</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">n</span><span class="o">*</span><span class="nx">n</span><span class="p">)</span><span class="w"></span>
-<span class="w">       </span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">m</span><span class="p">,</span><span class="w"> </span><span class="nx">n</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">m</span><span class="o">+</span><span class="nx">n</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="mf">2</span><span class="p">,</span><span class="mf">3</span><span class="p">].</span><span class="nx">map</span><span class="p">(</span><span class="nx">n</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">n</span><span class="o">*</span><span class="nx">n</span><span class="p">)</span>
+<span class="w">       </span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">m</span><span class="p">,</span><span class="w"> </span><span class="nx">n</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">m</span><span class="o">+</span><span class="nx">n</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -352,7 +352,7 @@ notebook given the appropriate kernel.</p>
 no code
 </pre></div>
 </div>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -486,9 +486,7 @@ I can't help you.</p>
             
           </div>
           <div class="right-details">
-            <div class="icons">
-              
-            </div>
+            
           </div>
         </div>
         
@@ -546,9 +544,6 @@ I can't help you.</p>
     </aside>
   </div>
 </div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/scripts/furo.js"></script>

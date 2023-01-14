@@ -4,11 +4,10 @@
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" />
 
-    <link rel="shortcut icon" href="../../../_static/favicon.svg"/><!-- Generated with Sphinx 6.0.0 and Furo 2022.12.07 -->
+    <link rel="shortcut icon" href="../../../_static/favicon.svg"/><!-- Generated with Sphinx 6.1.3 and Furo 2022.12.07 -->
         <title>esbonio.lsp.rst - Esbonio</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?digest=91d0f0d1c444bdcb17a68e833c7a53903343c195" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/autodoc_pydantic.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
     
@@ -177,16 +176,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../lsp/extending/api-reference.html">API Reference</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../../lsp/how-to.html">How To</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../lsp/how-to/get-debug-info.html">How To: Get Debug Information</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lsp/how-to.html">How To</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Sphinx Extensions</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../extensions/relevant_to.html">Relevent To</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../../extensions/tutorial.html">Tutorial</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../extensions/tutorial.html">Tutorial</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../extensions/tutorial/formatting-example.html">Formatting Example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../extensions/tutorial/hello-world.html">Hello World</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../extensions/tutorial/solution-example.html">Solution Example</a></li>
@@ -247,25 +243,26 @@
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Type</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TypeVar</span>
 
+<span class="kn">import</span> <span class="nn">attrs</span>
 <span class="kn">import</span> <span class="nn">pygls.uris</span> <span class="k">as</span> <span class="nn">Uri</span>
 <span class="kn">from</span> <span class="nn">docutils.parsers.rst</span> <span class="kn">import</span> <span class="n">Directive</span>
-<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span>
-<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">Field</span>
+<span class="kn">from</span> <span class="nn">lsprotocol.converters</span> <span class="kn">import</span> <span class="n">get_converter</span>
+<span class="kn">from</span> <span class="nn">lsprotocol.types</span> <span class="kn">import</span> <span class="n">ClientCapabilities</span>
+<span class="kn">from</span> <span class="nn">lsprotocol.types</span> <span class="kn">import</span> <span class="n">CodeAction</span>
+<span class="kn">from</span> <span class="nn">lsprotocol.types</span> <span class="kn">import</span> <span class="n">CodeActionParams</span>
+<span class="kn">from</span> <span class="nn">lsprotocol.types</span> <span class="kn">import</span> <span class="n">CompletionItem</span>
+<span class="kn">from</span> <span class="nn">lsprotocol.types</span> <span class="kn">import</span> <span class="n">CompletionItemTag</span>
+<span class="kn">from</span> <span class="nn">lsprotocol.types</span> <span class="kn">import</span> <span class="n">DeleteFilesParams</span>
+<span class="kn">from</span> <span class="nn">lsprotocol.types</span> <span class="kn">import</span> <span class="n">Diagnostic</span>
+<span class="kn">from</span> <span class="nn">lsprotocol.types</span> <span class="kn">import</span> <span class="n">DidSaveTextDocumentParams</span>
+<span class="kn">from</span> <span class="nn">lsprotocol.types</span> <span class="kn">import</span> <span class="n">DocumentLink</span>
+<span class="kn">from</span> <span class="nn">lsprotocol.types</span> <span class="kn">import</span> <span class="n">InitializedParams</span>
+<span class="kn">from</span> <span class="nn">lsprotocol.types</span> <span class="kn">import</span> <span class="n">InitializeParams</span>
+<span class="kn">from</span> <span class="nn">lsprotocol.types</span> <span class="kn">import</span> <span class="n">Location</span>
+<span class="kn">from</span> <span class="nn">lsprotocol.types</span> <span class="kn">import</span> <span class="n">MarkupKind</span>
+<span class="kn">from</span> <span class="nn">lsprotocol.types</span> <span class="kn">import</span> <span class="n">Position</span>
 <span class="kn">from</span> <span class="nn">pygls</span> <span class="kn">import</span> <span class="n">IS_WIN</span>
-<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">ClientCapabilities</span>
-<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">CodeAction</span>
-<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">CodeActionParams</span>
-<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">CompletionItem</span>
-<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">CompletionItemTag</span>
-<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">DeleteFilesParams</span>
-<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">Diagnostic</span>
-<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">DidSaveTextDocumentParams</span>
-<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">DocumentLink</span>
-<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">InitializedParams</span>
-<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">InitializeParams</span>
-<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">Location</span>
-<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">MarkupKind</span>
-<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">Position</span>
+<span class="kn">from</span> <span class="nn">pygls.capabilities</span> <span class="kn">import</span> <span class="n">get_capability</span>
 <span class="kn">from</span> <span class="nn">pygls.server</span> <span class="kn">import</span> <span class="n">LanguageServer</span>
 <span class="kn">from</span> <span class="nn">pygls.workspace</span> <span class="kn">import</span> <span class="n">Document</span>
 
@@ -274,6 +271,7 @@
 
 <span class="kn">from</span> <span class="nn">.io</span> <span class="kn">import</span> <span class="n">read_initial_doctree</span>
 
+<span class="n">converter</span> <span class="o">=</span> <span class="n">get_converter</span><span class="p">()</span>
 <span class="n">LF</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;LF&quot;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="s2">&quot;LanguageFeature&quot;</span><span class="p">)</span>
 <span class="n">TRIPLE_QUOTE</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s2">&quot;(</span><span class="se">\&quot;\&quot;\&quot;</span><span class="s2">|&#39;&#39;&#39;)&quot;</span><span class="p">)</span>
 <span class="sd">&quot;&quot;&quot;A regular expression matching the triple quotes used to delimit python docstrings.&quot;&quot;&quot;</span>
@@ -327,52 +325,66 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">commit_characters_support</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Indicates if the client supports commit characters.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client_capabilities</span><span class="o">.</span><span class="n">get_capability</span><span class="p">(</span>
-            <span class="s2">&quot;text_document.completion.completion_item.commit_characters_support&quot;</span><span class="p">,</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="n">get_capability</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_client_capabilities</span><span class="p">,</span>
+            <span class="s2">&quot;text_document.completion.completion_item.commit_characters_support&quot;</span><span class="p">,</span>
+            <span class="kc">False</span><span class="p">,</span>
         <span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">deprecated_support</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Indicates if the client supports the deprecated field on a</span>
 <span class="sd">        ``CompletionItem``.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client_capabilities</span><span class="o">.</span><span class="n">get_capability</span><span class="p">(</span>
-            <span class="s2">&quot;text_document.completion.completion_item.deprecated_support&quot;</span><span class="p">,</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="n">get_capability</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_client_capabilities</span><span class="p">,</span>
+            <span class="s2">&quot;text_document.completion.completion_item.deprecated_support&quot;</span><span class="p">,</span>
+            <span class="kc">False</span><span class="p">,</span>
         <span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">documentation_formats</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">MarkupKind</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;The list of documentation formats supported by the client.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client_capabilities</span><span class="o">.</span><span class="n">get_capability</span><span class="p">(</span>
-            <span class="s2">&quot;text_document.completion.completion_item.documentation_format&quot;</span><span class="p">,</span> <span class="p">[]</span>
+        <span class="k">return</span> <span class="n">get_capability</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_client_capabilities</span><span class="p">,</span>
+            <span class="s2">&quot;text_document.completion.completion_item.documentation_format&quot;</span><span class="p">,</span>
+            <span class="p">[],</span>
         <span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">insert_replace_support</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Indicates if the client supports ``InsertReplaceEdit``.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client_capabilities</span><span class="o">.</span><span class="n">get_capability</span><span class="p">(</span>
-            <span class="s2">&quot;text_document.completion.completion_item.insert_replace_support&quot;</span><span class="p">,</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="n">get_capability</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_client_capabilities</span><span class="p">,</span>
+            <span class="s2">&quot;text_document.completion.completion_item.insert_replace_support&quot;</span><span class="p">,</span>
+            <span class="kc">False</span><span class="p">,</span>
         <span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">preselect_support</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Indicates if the client supports the preselect field on a</span>
 <span class="sd">        ``CompletionItem``.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client_capabilities</span><span class="o">.</span><span class="n">get_capability</span><span class="p">(</span>
-            <span class="s2">&quot;text_document.completion.completion_item.preselect_support&quot;</span><span class="p">,</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="n">get_capability</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_client_capabilities</span><span class="p">,</span>
+            <span class="s2">&quot;text_document.completion.completion_item.preselect_support&quot;</span><span class="p">,</span>
+            <span class="kc">False</span><span class="p">,</span>
         <span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">snippet_support</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Indicates if the client supports snippets&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client_capabilities</span><span class="o">.</span><span class="n">get_capability</span><span class="p">(</span>
-            <span class="s2">&quot;text_document.completion.completion_item.snippet_support&quot;</span><span class="p">,</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="n">get_capability</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_client_capabilities</span><span class="p">,</span>
+            <span class="s2">&quot;text_document.completion.completion_item.snippet_support&quot;</span><span class="p">,</span>
+            <span class="kc">False</span><span class="p">,</span>
         <span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">supported_tags</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">CompletionItemTag</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;The list of ``CompletionItemTags`` supported by the client.&quot;&quot;&quot;</span>
-        <span class="n">capabilities</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client_capabilities</span><span class="o">.</span><span class="n">get_capability</span><span class="p">(</span>
-            <span class="s2">&quot;text_document.completion.completion_item.tag_support&quot;</span><span class="p">,</span> <span class="kc">None</span>
+        <span class="n">capabilities</span> <span class="o">=</span> <span class="n">get_capability</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_client_capabilities</span><span class="p">,</span>
+            <span class="s2">&quot;text_document.completion.completion_item.tag_support&quot;</span><span class="p">,</span>
+            <span class="kc">None</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">capabilities</span><span class="p">:</span>
@@ -394,8 +406,10 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">tooltip_support</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Indicates if the client supports tooltips.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client_capabilities</span><span class="o">.</span><span class="n">get_capability</span><span class="p">(</span>
-            <span class="s2">&quot;text_document.document_link.tooltip_support&quot;</span><span class="p">,</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="n">get_capability</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_client_capabilities</span><span class="p">,</span>
+            <span class="s2">&quot;text_document.document_link.tooltip_support&quot;</span><span class="p">,</span>
+            <span class="kc">False</span><span class="p">,</span>
         <span class="p">)</span></div>
 
 
@@ -479,8 +493,8 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">content_formats</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">MarkupKind</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;The list of content formats supported by the client.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client_capabilities</span><span class="o">.</span><span class="n">get_capability</span><span class="p">(</span>
-            <span class="s2">&quot;text_document.hover.content_format&quot;</span><span class="p">,</span> <span class="p">[]</span>
+        <span class="k">return</span> <span class="n">get_capability</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_client_capabilities</span><span class="p">,</span> <span class="s2">&quot;text_document.hover.content_format&quot;</span><span class="p">,</span> <span class="p">[]</span>
         <span class="p">)</span>
 
 
@@ -613,29 +627,31 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="ServerConfig"><a class="viewcode-back" href="../../../lsp/extending/api-reference.html#esbonio.lsp.rst.ServerConfig">[docs]</a><span class="k">class</span> <span class="nc">ServerConfig</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<div class="viewcode-block" id="ServerConfig"><a class="viewcode-back" href="../../../lsp/extending/api-reference.html#esbonio.lsp.rst.ServerConfig">[docs]</a><span class="nd">@attrs</span><span class="o">.</span><span class="n">define</span>
+<span class="k">class</span> <span class="nc">ServerConfig</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Configuration options for the server.&quot;&quot;&quot;</span>
 
-    <span class="n">log_level</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s2">&quot;error&quot;</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;logLevel&quot;</span><span class="p">)</span>
+    <span class="n">log_level</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">attrs</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s2">&quot;error&quot;</span><span class="p">)</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;The logging level of server messages to display.&quot;&quot;&quot;</span>
 
-    <span class="n">log_filter</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;logFilter&quot;</span><span class="p">)</span>
+    <span class="n">log_filter</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">attrs</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="n">factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A list of logger names to restrict output to.&quot;&quot;&quot;</span>
 
-    <span class="n">show_deprecation_warnings</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;showDeprecationWarnings&quot;</span><span class="p">)</span>
+    <span class="n">show_deprecation_warnings</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">attrs</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Developer flag to enable deprecation warnings.&quot;&quot;&quot;</span>
 
-    <span class="n">enable_scroll_sync</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;enableScrollSync&quot;</span><span class="p">)</span>
+    <span class="n">enable_scroll_sync</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">attrs</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Enable custom transformation to add classes with line numbers&quot;&quot;&quot;</span>
 
-    <span class="n">enable_live_preview</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;enableLivePreview&quot;</span><span class="p">)</span>
+    <span class="n">enable_live_preview</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">attrs</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Set it to True if you want to build Sphinx app on change event&quot;&quot;&quot;</span></div>
 
 
-<div class="viewcode-block" id="InitializationOptions"><a class="viewcode-back" href="../../../lsp/extending/api-reference.html#esbonio.lsp.rst.InitializationOptions">[docs]</a><span class="k">class</span> <span class="nc">InitializationOptions</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<div class="viewcode-block" id="InitializationOptions"><a class="viewcode-back" href="../../../lsp/extending/api-reference.html#esbonio.lsp.rst.InitializationOptions">[docs]</a><span class="nd">@attrs</span><span class="o">.</span><span class="n">define</span>
+<span class="k">class</span> <span class="nc">InitializationOptions</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;The initialization options we can expect to receive from a client.&quot;&quot;&quot;</span>
 
-    <span class="n">server</span><span class="p">:</span> <span class="n">ServerConfig</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">ServerConfig</span><span class="p">)</span>
+    <span class="n">server</span><span class="p">:</span> <span class="n">ServerConfig</span> <span class="o">=</span> <span class="n">attrs</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="n">factory</span><span class="o">=</span><span class="n">ServerConfig</span><span class="p">)</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;The ``esbonio.server.*`` namespace of options.&quot;&quot;&quot;</span></div>
 
 
@@ -648,7 +664,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logger</span> <span class="ow">or</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;The base logger that should be used for all language sever log entries.&quot;&quot;&quot;</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">user_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">BaseModel</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">converter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lsp</span><span class="o">.</span><span class="n">_converter</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The cattrs converter instance we should use.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">user_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;The user&#39;s configuration.&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_diagnostics</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="n">Diagnostic</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
@@ -666,11 +685,11 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_config</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">{}</span>
 
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_config</span><span class="o">.</span><span class="n">dict</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">converter</span><span class="o">.</span><span class="n">unstructure</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user_config</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">InitializeParams</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">user_config</span> <span class="o">=</span> <span class="n">InitializationOptions</span><span class="p">(</span>
-            <span class="o">**</span><span class="n">typing</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">Dict</span><span class="p">,</span> <span class="n">params</span><span class="o">.</span><span class="n">initialization_options</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user_config</span> <span class="o">=</span> <span class="n">converter</span><span class="o">.</span><span class="n">structure</span><span class="p">(</span>
+            <span class="n">params</span><span class="o">.</span><span class="n">initialization_options</span><span class="p">,</span> <span class="n">InitializationOptions</span>
         <span class="p">)</span>
         <span class="n">setup_logging</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_config</span><span class="o">.</span><span class="n">server</span><span class="p">)</span>
 

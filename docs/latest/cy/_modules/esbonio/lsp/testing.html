@@ -8,6 +8,7 @@
         <title>esbonio.lsp.testing - Esbonio</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?digest=91d0f0d1c444bdcb17a68e833c7a53903343c195" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
     
@@ -176,7 +177,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../lsp/extending/api-reference.html">API Reference</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../lsp/how-to.html">How To</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Sphinx Extensions</span></p>
@@ -229,17 +229,25 @@
 <span></span><span class="sd">&quot;&quot;&quot;Utility functions to help with testing Language Server features.&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">pathlib</span>
+<span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span>
 
 <span class="kn">import</span> <span class="nn">pygls.uris</span> <span class="k">as</span> <span class="nn">Uri</span>
+<span class="kn">from</span> <span class="nn">lsprotocol.types</span> <span class="kn">import</span> <span class="n">ClientCapabilities</span>
 <span class="kn">from</span> <span class="nn">lsprotocol.types</span> <span class="kn">import</span> <span class="n">CompletionItem</span>
 <span class="kn">from</span> <span class="nn">lsprotocol.types</span> <span class="kn">import</span> <span class="n">CompletionList</span>
 <span class="kn">from</span> <span class="nn">lsprotocol.types</span> <span class="kn">import</span> <span class="n">Hover</span>
+<span class="kn">from</span> <span class="nn">lsprotocol.types</span> <span class="kn">import</span> <span class="n">Position</span>
+<span class="kn">from</span> <span class="nn">lsprotocol.types</span> <span class="kn">import</span> <span class="n">Range</span>
+<span class="kn">from</span> <span class="nn">pygls.workspace</span> <span class="kn">import</span> <span class="n">Document</span>
 <span class="kn">from</span> <span class="nn">pytest_lsp</span> <span class="kn">import</span> <span class="n">LanguageClient</span>
 <span class="kn">from</span> <span class="nn">pytest_lsp</span> <span class="kn">import</span> <span class="n">make_test_client</span>
 <span class="kn">from</span> <span class="nn">sphinx</span> <span class="kn">import</span> <span class="n">__version__</span> <span class="k">as</span> <span class="n">__sphinx_version__</span>
+
+<span class="kn">from</span> <span class="nn">esbonio.lsp</span> <span class="kn">import</span> <span class="n">CompletionContext</span>
+<span class="kn">from</span> <span class="nn">esbonio.lsp.rst.config</span> <span class="kn">import</span> <span class="n">ServerCompletionConfig</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
@@ -313,6 +321,64 @@
         <span class="k">return</span> <span class="n">major</span> <span class="o">&lt;=</span> <span class="n">lte</span>
 
     <span class="k">return</span> <span class="kc">False</span></div>
+
+
+<div class="viewcode-block" id="range_from_str"><a class="viewcode-back" href="../../../lsp/extending/api-reference.html#esbonio.lsp.testing.range_from_str">[docs]</a><span class="k">def</span> <span class="nf">range_from_str</span><span class="p">(</span><span class="n">spec</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Range</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a range from the given string ``a:b-x:y``&quot;&quot;&quot;</span>
+    <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">spec</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">)</span>
+    <span class="n">sl</span><span class="p">,</span> <span class="n">sc</span> <span class="o">=</span> <span class="n">start</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
+    <span class="n">el</span><span class="p">,</span> <span class="n">ec</span> <span class="o">=</span> <span class="n">end</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">Range</span><span class="p">(</span>
+        <span class="n">start</span><span class="o">=</span><span class="n">Position</span><span class="p">(</span><span class="n">line</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">sl</span><span class="p">),</span> <span class="n">character</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">sc</span><span class="p">)),</span>
+        <span class="n">end</span><span class="o">=</span><span class="n">Position</span><span class="p">(</span><span class="n">line</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">el</span><span class="p">),</span> <span class="n">character</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">ec</span><span class="p">)),</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="make_completion_context"><a class="viewcode-back" href="../../../lsp/extending/api-reference.html#esbonio.lsp.testing.make_completion_context">[docs]</a><span class="k">def</span> <span class="nf">make_completion_context</span><span class="p">(</span>
+    <span class="n">pattern</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">Pattern</span><span class="p">,</span>
+    <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">character</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">prefer_insert</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CompletionContext</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Helper for making test completion context instances.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    pattern</span>
+<span class="sd">       The regular expression pattern that corresponds to the completion request.</span>
+
+<span class="sd">    text</span>
+<span class="sd">       The text that &quot;triggered&quot; the completion request</span>
+
+<span class="sd">    character</span>
+<span class="sd">       The character column at which the request is being made.</span>
+<span class="sd">       If ``-1`` (the default), it will be assumed that the request is being made at</span>
+<span class="sd">       the end of ``text``.</span>
+
+<span class="sd">    prefer_insert</span>
+<span class="sd">       Flag to indicate if the ``preferred_insert_behavior`` option should be set to</span>
+<span class="sd">       ``insert``</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">match</span> <span class="o">=</span> <span class="n">pattern</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">match</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="s2">&#39; is not valid in this completion context&quot;</span><span class="p">)</span>
+
+    <span class="n">line</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">character</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="k">if</span> <span class="n">character</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="k">else</span> <span class="n">character</span>
+
+    <span class="k">return</span> <span class="n">CompletionContext</span><span class="p">(</span>
+        <span class="n">doc</span><span class="o">=</span><span class="n">Document</span><span class="p">(</span><span class="n">uri</span><span class="o">=</span><span class="s2">&quot;file:///test.txt&quot;</span><span class="p">),</span>
+        <span class="n">location</span><span class="o">=</span><span class="s2">&quot;rst&quot;</span><span class="p">,</span>
+        <span class="n">match</span><span class="o">=</span><span class="n">match</span><span class="p">,</span>
+        <span class="n">position</span><span class="o">=</span><span class="n">Position</span><span class="p">(</span><span class="n">line</span><span class="o">=</span><span class="n">line</span><span class="p">,</span> <span class="n">character</span><span class="o">=</span><span class="n">character</span><span class="p">),</span>
+        <span class="n">config</span><span class="o">=</span><span class="n">ServerCompletionConfig</span><span class="p">(</span>
+            <span class="n">preferred_insert_behavior</span><span class="o">=</span><span class="s2">&quot;insert&quot;</span> <span class="k">if</span> <span class="n">prefer_insert</span> <span class="k">else</span> <span class="s2">&quot;replace&quot;</span>
+        <span class="p">),</span>
+        <span class="n">capabilities</span><span class="o">=</span><span class="n">ClientCapabilities</span><span class="p">(),</span>
+    <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="directive_argument_patterns"><a class="viewcode-back" href="../../../lsp/extending/api-reference.html#esbonio.lsp.testing.directive_argument_patterns">[docs]</a><span class="k">def</span> <span class="nf">directive_argument_patterns</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">partial</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
@@ -540,7 +606,7 @@
         <div class="bottom-of-page">
           <div class="left-details">
             <div class="copyright">
-                Copyright &#169; 2022
+                Copyright &#169; 2023
             </div>
             Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
             

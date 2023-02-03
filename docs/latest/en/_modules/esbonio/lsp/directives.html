@@ -8,6 +8,7 @@
         <title>esbonio.lsp.directives - Esbonio</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?digest=91d0f0d1c444bdcb17a68e833c7a53903343c195" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
     
@@ -176,7 +177,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../lsp/extending/api-reference.html">API Reference</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../lsp/how-to.html">How To</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Sphinx Extensions</span></p>
@@ -240,16 +240,12 @@
 
 <span class="kn">from</span> <span class="nn">docutils.parsers.rst</span> <span class="kn">import</span> <span class="n">Directive</span>
 <span class="kn">from</span> <span class="nn">lsprotocol.types</span> <span class="kn">import</span> <span class="n">CompletionItem</span>
-<span class="kn">from</span> <span class="nn">lsprotocol.types</span> <span class="kn">import</span> <span class="n">CompletionItemKind</span>
 <span class="kn">from</span> <span class="nn">lsprotocol.types</span> <span class="kn">import</span> <span class="n">DocumentLink</span>
-<span class="kn">from</span> <span class="nn">lsprotocol.types</span> <span class="kn">import</span> <span class="n">InsertTextFormat</span>
 <span class="kn">from</span> <span class="nn">lsprotocol.types</span> <span class="kn">import</span> <span class="n">Location</span>
 <span class="kn">from</span> <span class="nn">lsprotocol.types</span> <span class="kn">import</span> <span class="n">MarkupContent</span>
 <span class="kn">from</span> <span class="nn">lsprotocol.types</span> <span class="kn">import</span> <span class="n">MarkupKind</span>
 <span class="kn">from</span> <span class="nn">lsprotocol.types</span> <span class="kn">import</span> <span class="n">Position</span>
 <span class="kn">from</span> <span class="nn">lsprotocol.types</span> <span class="kn">import</span> <span class="n">Range</span>
-<span class="kn">from</span> <span class="nn">lsprotocol.types</span> <span class="kn">import</span> <span class="n">TextEdit</span>
-<span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Protocol</span>
 
 <span class="kn">from</span> <span class="nn">esbonio.lsp</span> <span class="kn">import</span> <span class="n">CompletionContext</span>
 <span class="kn">from</span> <span class="nn">esbonio.lsp</span> <span class="kn">import</span> <span class="n">DefinitionContext</span>
@@ -262,6 +258,14 @@
 <span class="kn">from</span> <span class="nn">esbonio.lsp.util.inspect</span> <span class="kn">import</span> <span class="n">get_object_location</span>
 <span class="kn">from</span> <span class="nn">esbonio.lsp.util.patterns</span> <span class="kn">import</span> <span class="n">DIRECTIVE</span>
 <span class="kn">from</span> <span class="nn">esbonio.lsp.util.patterns</span> <span class="kn">import</span> <span class="n">DIRECTIVE_OPTION</span>
+
+<span class="kn">from</span> <span class="nn">.completions</span> <span class="kn">import</span> <span class="n">render_directive_completion</span>
+<span class="kn">from</span> <span class="nn">.completions</span> <span class="kn">import</span> <span class="n">render_directive_option_completion</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Protocol</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Protocol</span>  <span class="c1"># type: ignore[assignment]</span>
 
 
 <div class="viewcode-block" id="DirectiveLanguageFeature"><a class="viewcode-back" href="../../../lsp/extending/directives.html#esbonio.lsp.directives.DirectiveLanguageFeature">[docs]</a><span class="k">class</span> <span class="nc">DirectiveLanguageFeature</span><span class="p">:</span>
@@ -309,7 +313,7 @@
         <span class="k">if</span> <span class="n">impl</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">[]</span>
 
-        <span class="n">option_spec</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">impl</span><span class="p">,</span> <span class="s2">&quot;option_spec&quot;</span><span class="p">,</span> <span class="p">{})</span>
+        <span class="n">option_spec</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">impl</span><span class="p">,</span> <span class="s2">&quot;option_spec&quot;</span><span class="p">,</span> <span class="p">{})</span> <span class="ow">or</span> <span class="p">{}</span>
         <span class="k">return</span> <span class="n">option_spec</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="DirectiveLanguageFeature.resolve_argument_link"><a class="viewcode-back" href="../../../lsp/extending/directives.html#esbonio.lsp.directives.DirectiveLanguageFeature.resolve_argument_link">[docs]</a>    <span class="k">def</span> <span class="nf">resolve_argument_link</span><span class="p">(</span>
@@ -809,56 +813,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Completing directives&quot;</span><span class="p">)</span>
 
         <span class="n">items</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">match</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">match</span>
-        <span class="n">groups</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">groupdict</span><span class="p">()</span>
-
-        <span class="c1"># Calculate the range of text the CompletionItems should edit.</span>
-        <span class="c1"># If there is an existing argument to the directive, we should leave it untouched</span>
-        <span class="c1"># otherwise, edit the whole line to insert any required arguments.</span>
-        <span class="n">start</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">span</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
-        <span class="n">include_argument</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">snippet_support</span>
-        <span class="n">end</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">span</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
-
-        <span class="k">if</span> <span class="n">groups</span><span class="p">[</span><span class="s2">&quot;argument&quot;</span><span class="p">]:</span>
-            <span class="n">include_argument</span> <span class="o">=</span> <span class="kc">False</span>
-            <span class="n">end</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">span</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;::&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span>
-
-        <span class="n">range_</span> <span class="o">=</span> <span class="n">Range</span><span class="p">(</span>
-            <span class="n">start</span><span class="o">=</span><span class="n">Position</span><span class="p">(</span><span class="n">line</span><span class="o">=</span><span class="n">context</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">line</span><span class="p">,</span> <span class="n">character</span><span class="o">=</span><span class="n">start</span><span class="p">),</span>
-            <span class="n">end</span><span class="o">=</span><span class="n">Position</span><span class="p">(</span><span class="n">line</span><span class="o">=</span><span class="n">context</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">line</span><span class="p">,</span> <span class="n">character</span><span class="o">=</span><span class="n">end</span><span class="p">),</span>
-        <span class="p">)</span>
-
         <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">directive</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">suggest_directives</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+            <span class="n">item</span> <span class="o">=</span> <span class="n">render_directive_completion</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">directive</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">item</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">continue</span>
 
-            <span class="c1"># TODO: Give better names to arguments based on what they represent.</span>
-            <span class="k">if</span> <span class="n">include_argument</span><span class="p">:</span>
-                <span class="n">insert_format</span> <span class="o">=</span> <span class="n">InsertTextFormat</span><span class="o">.</span><span class="n">Snippet</span>
-                <span class="n">nargs</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">directive</span><span class="p">,</span> <span class="s2">&quot;required_arguments&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-                <span class="n">args</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
-                    <span class="s2">&quot;${{</span><span class="si">{0}</span><span class="s2">:arg</span><span class="si">{0}</span><span class="s2">}}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nargs</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-                <span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">args</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-                <span class="n">insert_format</span> <span class="o">=</span> <span class="n">InsertTextFormat</span><span class="o">.</span><span class="n">PlainText</span>
-
-            <span class="k">try</span><span class="p">:</span>
-                <span class="n">dotted_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">directive</span><span class="o">.</span><span class="vm">__module__</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">directive</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&quot;</span>
-            <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
-                <span class="n">dotted_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">directive</span><span class="o">.</span><span class="vm">__module__</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">directive</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&quot;</span>
-
-            <span class="n">insert_text</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;.. </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">::</span><span class="si">{</span><span class="n">args</span><span class="si">}</span><span class="s2">&quot;</span>
-
-            <span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                <span class="n">CompletionItem</span><span class="p">(</span>
-                    <span class="n">label</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
-                    <span class="n">kind</span><span class="o">=</span><span class="n">CompletionItemKind</span><span class="o">.</span><span class="n">Class</span><span class="p">,</span>
-                    <span class="n">detail</span><span class="o">=</span><span class="n">dotted_name</span><span class="p">,</span>
-                    <span class="n">filter_text</span><span class="o">=</span><span class="n">insert_text</span><span class="p">,</span>
-                    <span class="n">text_edit</span><span class="o">=</span><span class="n">TextEdit</span><span class="p">(</span><span class="nb">range</span><span class="o">=</span><span class="n">range_</span><span class="p">,</span> <span class="n">new_text</span><span class="o">=</span><span class="n">insert_text</span><span class="p">),</span>
-                    <span class="n">insert_text_format</span><span class="o">=</span><span class="n">insert_format</span><span class="p">,</span>
-                    <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;completion_type&quot;</span><span class="p">:</span> <span class="s2">&quot;directive&quot;</span><span class="p">},</span>
-                <span class="p">)</span>
-            <span class="p">)</span>
+            <span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">items</span>
 
@@ -892,35 +852,13 @@
             <span class="k">return</span> <span class="p">[]</span>
 
         <span class="n">items</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">match</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">match</span>
-        <span class="n">groups</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">groupdict</span><span class="p">()</span>
-        <span class="n">impl_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">impl</span><span class="o">.</span><span class="vm">__module__</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">impl</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&quot;</span>
-
-        <span class="n">option</span> <span class="o">=</span> <span class="n">groups</span><span class="p">[</span><span class="s2">&quot;option&quot;</span><span class="p">]</span>
-        <span class="n">start</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">span</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">option</span><span class="p">)</span>
-        <span class="n">end</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">option</span><span class="p">)</span>
-
-        <span class="n">range_</span> <span class="o">=</span> <span class="n">Range</span><span class="p">(</span>
-            <span class="n">start</span><span class="o">=</span><span class="n">Position</span><span class="p">(</span><span class="n">line</span><span class="o">=</span><span class="n">context</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">line</span><span class="p">,</span> <span class="n">character</span><span class="o">=</span><span class="n">start</span><span class="p">),</span>
-            <span class="n">end</span><span class="o">=</span><span class="n">Position</span><span class="p">(</span><span class="n">line</span><span class="o">=</span><span class="n">context</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">line</span><span class="p">,</span> <span class="n">character</span><span class="o">=</span><span class="n">end</span><span class="p">),</span>
-        <span class="p">)</span>
 
         <span class="k">for</span> <span class="n">option</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">suggest_options</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">domain</span><span class="p">):</span>
-            <span class="n">insert_text</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;:</span><span class="si">{</span><span class="n">option</span><span class="si">}</span><span class="s2">:&quot;</span>
+            <span class="n">item</span> <span class="o">=</span> <span class="n">render_directive_option_completion</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">impl</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">item</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">continue</span>
 
-            <span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                <span class="n">CompletionItem</span><span class="p">(</span>
-                    <span class="n">label</span><span class="o">=</span><span class="n">option</span><span class="p">,</span>
-                    <span class="n">detail</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">impl_name</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">option</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-                    <span class="n">kind</span><span class="o">=</span><span class="n">CompletionItemKind</span><span class="o">.</span><span class="n">Field</span><span class="p">,</span>
-                    <span class="n">filter_text</span><span class="o">=</span><span class="n">insert_text</span><span class="p">,</span>
-                    <span class="n">text_edit</span><span class="o">=</span><span class="n">TextEdit</span><span class="p">(</span><span class="nb">range</span><span class="o">=</span><span class="n">range_</span><span class="p">,</span> <span class="n">new_text</span><span class="o">=</span><span class="n">insert_text</span><span class="p">),</span>
-                    <span class="n">data</span><span class="o">=</span><span class="p">{</span>
-                        <span class="s2">&quot;completion_type&quot;</span><span class="p">:</span> <span class="s2">&quot;directive_option&quot;</span><span class="p">,</span>
-                        <span class="s2">&quot;for_directive&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
-                    <span class="p">},</span>
-                <span class="p">)</span>
-            <span class="p">)</span>
+            <span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">items</span>
 
@@ -1244,7 +1182,7 @@
         <div class="bottom-of-page">
           <div class="left-details">
             <div class="copyright">
-                Copyright &#169; 2022
+                Copyright &#169; 2023
             </div>
             Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
             

@@ -8,6 +8,7 @@
         <title>esbonio.lsp.rst - Esbonio</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?digest=91d0f0d1c444bdcb17a68e833c7a53903343c195" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
     
@@ -176,7 +177,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../lsp/extending/api-reference.html">API Reference</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../lsp/how-to.html">How To</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Sphinx Extensions</span></p>
@@ -243,7 +243,6 @@
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Type</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TypeVar</span>
 
-<span class="kn">import</span> <span class="nn">attrs</span>
 <span class="kn">import</span> <span class="nn">pygls.uris</span> <span class="k">as</span> <span class="nn">Uri</span>
 <span class="kn">from</span> <span class="nn">docutils.parsers.rst</span> <span class="kn">import</span> <span class="n">Directive</span>
 <span class="kn">from</span> <span class="nn">lsprotocol.converters</span> <span class="kn">import</span> <span class="n">get_converter</span>
@@ -269,6 +268,8 @@
 <span class="kn">from</span> <span class="nn">esbonio.cli</span> <span class="kn">import</span> <span class="n">setup_cli</span>
 <span class="kn">from</span> <span class="nn">esbonio.lsp.log</span> <span class="kn">import</span> <span class="n">setup_logging</span>
 
+<span class="kn">from</span> <span class="nn">.config</span> <span class="kn">import</span> <span class="n">InitializationOptions</span>
+<span class="kn">from</span> <span class="nn">.config</span> <span class="kn">import</span> <span class="n">ServerCompletionConfig</span>
 <span class="kn">from</span> <span class="nn">.io</span> <span class="kn">import</span> <span class="n">read_initial_doctree</span>
 
 <span class="n">converter</span> <span class="o">=</span> <span class="n">get_converter</span><span class="p">()</span>
@@ -298,6 +299,7 @@
         <span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">match</span><span class="p">:</span> <span class="s2">&quot;re.Match&quot;</span><span class="p">,</span>
         <span class="n">position</span><span class="p">:</span> <span class="n">Position</span><span class="p">,</span>
+        <span class="n">config</span><span class="p">:</span> <span class="n">ServerCompletionConfig</span><span class="p">,</span>
         <span class="n">capabilities</span><span class="p">:</span> <span class="n">ClientCapabilities</span><span class="p">,</span>
     <span class="p">):</span>
 
@@ -313,6 +315,9 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">position</span><span class="p">:</span> <span class="n">Position</span> <span class="o">=</span> <span class="n">position</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;The position at which the completion request was made.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">:</span> <span class="n">ServerCompletionConfig</span> <span class="o">=</span> <span class="n">config</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;User supplied configuration options.&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_client_capabilities</span><span class="p">:</span> <span class="n">ClientCapabilities</span> <span class="o">=</span> <span class="n">capabilities</span>
 
@@ -627,34 +632,6 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="ServerConfig"><a class="viewcode-back" href="../../../lsp/extending/api-reference.html#esbonio.lsp.rst.ServerConfig">[docs]</a><span class="nd">@attrs</span><span class="o">.</span><span class="n">define</span>
-<span class="k">class</span> <span class="nc">ServerConfig</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Configuration options for the server.&quot;&quot;&quot;</span>
-
-    <span class="n">log_level</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">attrs</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s2">&quot;error&quot;</span><span class="p">)</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;The logging level of server messages to display.&quot;&quot;&quot;</span>
-
-    <span class="n">log_filter</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">attrs</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="n">factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;A list of logger names to restrict output to.&quot;&quot;&quot;</span>
-
-    <span class="n">show_deprecation_warnings</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">attrs</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Developer flag to enable deprecation warnings.&quot;&quot;&quot;</span>
-
-    <span class="n">enable_scroll_sync</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">attrs</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Enable custom transformation to add classes with line numbers&quot;&quot;&quot;</span>
-
-    <span class="n">enable_live_preview</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">attrs</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Set it to True if you want to build Sphinx app on change event&quot;&quot;&quot;</span></div>
-
-
-<div class="viewcode-block" id="InitializationOptions"><a class="viewcode-back" href="../../../lsp/extending/api-reference.html#esbonio.lsp.rst.InitializationOptions">[docs]</a><span class="nd">@attrs</span><span class="o">.</span><span class="n">define</span>
-<span class="k">class</span> <span class="nc">InitializationOptions</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;The initialization options we can expect to receive from a client.&quot;&quot;&quot;</span>
-
-    <span class="n">server</span><span class="p">:</span> <span class="n">ServerConfig</span> <span class="o">=</span> <span class="n">attrs</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="n">factory</span><span class="o">=</span><span class="n">ServerConfig</span><span class="p">)</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;The ``esbonio.server.*`` namespace of options.&quot;&quot;&quot;</span></div>
-
-
 <div class="viewcode-block" id="RstLanguageServer"><a class="viewcode-back" href="../../../lsp/extending/api-reference.html#esbonio.lsp.rst.RstLanguageServer">[docs]</a><span class="k">class</span> <span class="nc">RstLanguageServer</span><span class="p">(</span><span class="n">LanguageServer</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A generic reStructuredText language server.&quot;&quot;&quot;</span>
 
@@ -667,7 +644,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">converter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lsp</span><span class="o">.</span><span class="n">_converter</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;The cattrs converter instance we should use.&quot;&quot;&quot;</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">user_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user_config</span><span class="p">:</span> <span class="n">InitializationOptions</span> <span class="o">=</span> <span class="n">InitializationOptions</span><span class="p">()</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;The user&#39;s configuration.&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_diagnostics</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="n">Diagnostic</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
@@ -682,9 +659,6 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the server&#39;s actual configuration.&quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_config</span><span class="p">:</span>
-            <span class="k">return</span> <span class="p">{}</span>
-
         <span class="k">return</span> <span class="n">converter</span><span class="o">.</span><span class="n">unstructure</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user_config</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">InitializeParams</span><span class="p">):</span>
@@ -1152,7 +1126,7 @@
         <div class="bottom-of-page">
           <div class="left-details">
             <div class="copyright">
-                Copyright &#169; 2022
+                Copyright &#169; 2023
             </div>
             Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
             

@@ -1,8 +1,18 @@
-<p>
-Kate’s LSP client is provided via a plugin that needs to be enabled if you’re using
-it for the first time.
+<div class="admonition note">
+
+<p class="admonition-title">
+Note
 </p>
 
+<p>
+This guide was written using Kate 
+<code class="docutils literal notranslate">
+<span class="pre">v22.12.1</span>
+</code>
+</p>
+
+
+</div>
 
 <ol class="arabic">
 
@@ -12,8 +22,7 @@ Open Kate’s settings through the
 <span class="guilabel">
 Settings -&gt; Configure Kate…
 </span>
- menu,
-or with the 
+ menu, or with the 
 <kbd class="kbd compound docutils literal notranslate">
 <kbd class="kbd docutils literal notranslate">
 Ctrl
@@ -37,8 +46,7 @@ Select the
 <span class="guilabel">
 Plugins
 </span>
- section on the left hand side find the
-
+ section on the left hand side, find the 
 <span class="guilabel">
 LSP Client
 </span>
@@ -74,12 +82,11 @@ Plugins
 
 <li>
 <p>
-Once checked a new 
+With the LSP Client enabled, open the 
 <span class="guilabel">
 LSP Client
 </span>
- section should appear at the bottom of the
-list. Open it and select the 
+ configuration section and select the 
 <span class="guilabel">
 User Server Settings
 </span>
@@ -89,8 +96,7 @@ User Server Settings
 
 <li>
 <p>
-This should open up a text box where you can enter some JSON to tell Kate how and
-when to start the language server.
+This should open up a text box where you can enter some JSON to tell Kate how and when to start the language server.
 </p>
 
 
@@ -99,11 +105,12 @@ when to start the language server.
 <span class="w">    </span><span class="nt">&quot;rst&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;python&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-m&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;esbonio&quot;</span><span class="p">],</span>
 <span class="w">      </span><span class="nt">&quot;initializationOptions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;sphinx&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="nt">&quot;srcDir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">&quot;confDir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
-<span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="nt">&quot;server&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span>
+<span class="w">        </span><span class="nt">&quot;sphinx&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;server&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;completion&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;preferredInsertBehavior&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;insert&quot;</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
 <span class="w">      </span><span class="p">},</span>
 <span class="w">      </span><span class="nt">&quot;rootIndicationFileNames&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;conf.py&quot;</span><span class="p">],</span>
 <span class="w">      </span><span class="nt">&quot;highlightingModeRegex&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;^reStructuredText$&quot;</span>
@@ -114,12 +121,34 @@ when to start the language server.
 </div>
 
 <p>
-For more details general LSP configuration have a look at 
-<a class="reference external" href="https://docs.kde.org/stable5/en/kate/kate/kate-application-plugin-lspclient.html">
-Kate’s LSP Client
+For best results, we recommend you set 
+<a class="reference internal" href="#confval-server.completion.preferredInsertBehavior-string">
+<code class="xref std std-confval docutils literal notranslate">
+<span class="pre">server.completion.preferredInsertBehavior</span>
+ 
+<span class="pre">(string)</span>
+</code>
 </a>
+ to 
+<code class="docutils literal notranslate">
+<span class="pre">insert</span>
+</code>
+, see the section on 
+<a class="reference internal" href="#lsp-configuration">
+<span class="std std-ref">
+Configuration
+</span>
+</a>
+ for details  on all the available options.
+</p>
 
-documentation.
+
+<p>
+For more details on Kate’s LSP client see the 
+<a class="reference external" href="https://docs.kde.org/stable5/en/kate/kate/kate-application-plugin-lspclient.html">
+project’s
+</a>
+ documentation.
 </p>
 
 
@@ -129,7 +158,7 @@ documentation.
 <p>
 Once you’re happy with your configuration be sure to hit the 
 <span class="guilabel">
-Apply
+Save
 </span>
  button for
 it to take effect!
@@ -212,4 +241,3 @@ Start Kate from the terminal with the correct Python environment activated:
 </ul>
 
 </div>
-

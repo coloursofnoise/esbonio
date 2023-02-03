@@ -9,6 +9,7 @@
         <title>Getting Started - Esbonio</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=91d0f0d1c444bdcb17a68e833c7a53903343c195" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
     
@@ -177,7 +178,6 @@
 <li class="toctree-l2"><a class="reference internal" href="extending/api-reference.html">API Reference</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="how-to.html">How To</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Sphinx Extensions</span></p>
@@ -270,24 +270,29 @@ sure on where to start, <a class="reference external" href="https://github.com/s
 <hr />
 <section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">#</a></h2>
-<p>The language server can be installed using pip</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pip<span class="w"> </span>install<span class="w"> </span>esbonio
-</pre></div>
+<p>The language server can be installed using pip, or if you prefer, conda.</p>
+<p>Sphinx and the reStructuredText format itself are highly extensible so the available features can differ greatly from project to project.
+For this reason the <code class="docutils literal notranslate"><span class="pre">esbonio</span></code> should be installed into the same environment you use when building your documentation.
+Otherwise the language server will fail to properly understand your project.</p>
+
+<hr />
+<div class="pt-2">
+  <label>Package Manager:</label>
+
+  <select name="subject"
+          class="mb-2"
+          hx-get="getting-started/:subject.html"
+          hx-target="#group-1"
+          data-category="package-manager"
+          data-kind="relevant-to">
+    <option data-id="conda" value="package-manager-conda-0">conda</option>
+<option data-id="pip" value="package-manager-pip-0">pip</option>
+  </select>
+
+  <div id="group-1">
+  </div>
 </div>
-<p>Sphinx and the reStructuredText format itself are highly extensible so the available
-features can differ greatly from project to project. For this reason the
-language server should be installed into the same environment you use when
-building your documentation e.g.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">source</span><span class="w"> </span>.env/bin/activate
-<span class="gp gp-VirtualEnv">(.env)</span> <span class="gp">$ </span>pip<span class="w"> </span>install<span class="w"> </span>esbonio
-</pre></div>
-</div>
-<p>Otherwise the language server will fail to properly understand your project.</p>
-<p>If you want to try the latest developments before they are released you can use <code class="docutils literal notranslate"><span class="pre">pip</span></code> to install from the development branch.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;git+https://github.com/swyddfa/esbonio#egg=esbonio&amp;subdirectory=lib/esbonio&quot;</span>
-</pre></div>
-</div>
-<p>For more information on this command see the documentation on pip’s <a class="reference external" href="https://pip.pypa.io/en/stable/topics/vcs-support/">VCS Support</a>.</p>
+<hr />
 
 <hr />
 <div class="pt-2">
@@ -296,7 +301,7 @@ building your documentation e.g.</p>
   <select name="subject"
           class="mb-2"
           hx-get="getting-started/:subject.html"
-          hx-target="#group-1"
+          hx-target="#group-2"
           data-category="editor"
           data-kind="relevant-to">
     <option data-id="emacs-eglot" value="editor-emacs-eglot-1">Emacs (eglot)</option>
@@ -309,13 +314,13 @@ building your documentation e.g.</p>
 <option data-id="vscode-esbonio" value="editor-vscode-esbonio-1">VSCode (Esbonio)</option>
   </select>
 
-  <div id="group-1">
+  <div id="group-2">
   </div>
 </div>
 <hr />
 </section>
 <section id="configuration">
-<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this heading">#</a></h2>
+<span id="lsp-configuration"></span><h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this heading">#</a></h2>
 
 <hr />
 <div class="pt-2">
@@ -324,12 +329,12 @@ building your documentation e.g.</p>
   <select name="subject"
           class="mb-2"
           hx-get="getting-started/:subject.html"
-          hx-target="#group-2"
+          hx-target="#group-3"
           data-category="editor"
           data-kind="relevant-to">
     <option data-id="emacs-eglot" value="editor-emacs-eglot-2">Emacs (eglot)</option>
 <option data-id="emacs-lsp-mode" value="editor-emacs-lsp-mode-2">Emacs (lsp-mode)</option>
-<option data-id="kate" value="">Kate</option>
+<option data-id="kate" value="editor-kate-2">Kate</option>
 <option data-id="neovim-lspconfig" value="editor-neovim-lspconfig-2">Neovim (lspconfig)</option>
 <option data-id="sublime-text-lsp" value="editor-sublime-text-lsp-2">Sublime Text (LSP)</option>
 <option data-id="vim-coc-nvim" value="editor-vim-coc-nvim-2">Vim (coc.nvim)</option>
@@ -337,7 +342,7 @@ building your documentation e.g.</p>
 <option data-id="vscode-esbonio" value="editor-vscode-esbonio-2">VSCode (Esbonio)</option>
   </select>
 
-  <div id="group-2">
+  <div id="group-3">
   </div>
 </div>
 <hr />
@@ -503,6 +508,24 @@ See the documentation on the <a class="reference external" href="https://www.sph
 <h3>Server Options<a class="headerlink" href="#server-options" title="Permalink to this heading">#</a></h3>
 <p>The following options control the behavior of the language server as a whole.</p>
 <dl class="std confval">
+<dt class="sig sig-object std" id="confval-server.completion.preferredInsertBehavior-string">
+<span class="sig-name descname"><span class="pre">server.completion.preferredInsertBehavior</span> <span class="pre">(string)</span></span><a class="headerlink" href="#confval-server.completion.preferredInsertBehavior-string" title="Permalink to this definition">#</a></dt>
+<dd><p>Controls how completions behave when accepted, the following values are supported.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">replace</span></code> (default)</p>
+<p>Accepted completions will replace existing text, allowing the server to rewrite the current line in place.
+This allows the server to return all possible completions within the current context.
+In this mode the server will set the <code class="docutils literal notranslate"><span class="pre">textEdit</span></code> field of a <code class="docutils literal notranslate"><span class="pre">CompletionItem</span></code>.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">insert</span></code></p>
+<p>Accepted completions will append to existing text rather than replacing it.
+Since rewriting is not possible, only the completions that are compatible with any existing text will be returned.
+In this mode the server will set the <code class="docutils literal notranslate"><span class="pre">insertText</span></code> field of a <code class="docutils literal notranslate"><span class="pre">CompletionItem</span></code> which should work better with editors that do no support <code class="docutils literal notranslate"><span class="pre">textEdits</span></code>.</p>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="std confval">
 <dt class="sig sig-object std" id="confval-server.enableScrollSync-boolean">
 <span class="sig-name descname"><span class="pre">server.enableScrollSync</span> <span class="pre">(boolean)</span></span><a class="headerlink" href="#confval-server.enableScrollSync-boolean" title="Permalink to this definition">#</a></dt>
 <dd><p>When enabled, the server will inject line numbers into HTML build output making it possible for clients to implement synced scrolling.</p>
@@ -565,7 +588,7 @@ to help get you started.</p>
   <select name="subject"
           class="mb-2"
           hx-get="getting-started/:subject.html"
-          hx-target="#group-3"
+          hx-target="#group-4"
           data-category="editor"
           data-kind="relevant-to">
     <option data-id="emacs-eglot" value="editor-emacs-eglot-3">Emacs (eglot)</option>
@@ -578,7 +601,7 @@ to help get you started.</p>
 <option data-id="vscode-esbonio" value="">VSCode (Esbonio)</option>
   </select>
 
-  <div id="group-3">
+  <div id="group-4">
   </div>
 </div>
 <hr />
@@ -594,7 +617,7 @@ to help get you started.</p>
   <select name="subject"
           class="mb-2"
           hx-get="getting-started/:subject.html"
-          hx-target="#group-4"
+          hx-target="#group-5"
           data-category="editor"
           data-kind="relevant-to">
     <option data-id="emacs-eglot" value="">Emacs (eglot)</option>
@@ -607,7 +630,7 @@ to help get you started.</p>
 <option data-id="vscode-esbonio" value="">VSCode (Esbonio)</option>
   </select>
 
-  <div id="group-4">
+  <div id="group-5">
   </div>
 </div>
 <hr />
@@ -622,7 +645,7 @@ to help get you started.</p>
   <select name="subject"
           class="mb-2"
           hx-get="getting-started/:subject.html"
-          hx-target="#group-5"
+          hx-target="#group-6"
           data-category="editor"
           data-kind="relevant-to">
     <option data-id="emacs-eglot" value="">Emacs (eglot)</option>
@@ -635,7 +658,7 @@ to help get you started.</p>
 <option data-id="vscode-esbonio" value="editor-vscode-esbonio-3">VSCode (Esbonio)</option>
   </select>
 
-  <div id="group-5">
+  <div id="group-6">
   </div>
 </div>
 <hr />
@@ -767,7 +790,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="bottom-of-page">
           <div class="left-details">
             <div class="copyright">
-                Copyright &#169; 2022
+                Copyright &#169; 2023
             </div>
             Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
             

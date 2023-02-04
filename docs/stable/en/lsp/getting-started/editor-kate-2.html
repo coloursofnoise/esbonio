@@ -1,0 +1,66 @@
+<p>
+The settings that go in the 
+<span class="guilabel">
+User Server Settings
+</span>
+ tab of the LSP Client configuration section will apply globally to all your projects.
+Settings that you want to only apply to a specific project can go in your project’s 
+<code class="docutils literal notranslate">
+<span class="pre">.kateproject</span>
+</code>
+ file.
+</p>
+
+
+<p>
+As an example, the following 
+<code class="docutils literal notranslate">
+<span class="pre">.kateproject</span>
+</code>
+ file sets a custom start command to use a specific Python environment along with specifying the sphinx build dir.
+</p>
+
+
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Esbonio&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;files&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;git&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;lspclient&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;servers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;rst&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;/path/to/venv/bin/python&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-m&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;esbonio&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;initializationOptions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;sphinx&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;buildDir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${confDir}/_build&quot;</span>
+<span class="w">          </span><span class="p">},</span>
+<span class="w">          </span><span class="nt">&quot;server&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;logLevel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;debug&quot;</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<p>
+The values in the 
+<code class="docutils literal notranslate">
+<span class="pre">lspclient</span>
+</code>
+ section will be merged with the values specified in 
+<span class="guilabel">
+User Server Settings
+</span>
+.
+</p>
+
+
+<p>
+See below for a list of all available configuration options.
+</p>
+

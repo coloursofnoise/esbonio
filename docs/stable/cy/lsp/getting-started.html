@@ -5,11 +5,11 @@
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 <link rel="index" title="Indecs" href="../genindex.html" /><link rel="search" title="Chwilio" href="../search.html" /><link rel="next" title="Advanced Usage" href="advanced-usage.html" /><link rel="prev" title="Esbonio" href="../index.html" />
 
-    <link rel="shortcut icon" href="../_static/favicon.svg"/><meta name="generator" content="sphinx-5.3.0, furo 2022.09.29"/>
+    <link rel="shortcut icon" href="../_static/favicon.svg"/><!-- Generated with Sphinx 6.1.3 and Furo 2022.12.07 -->
         <title>Getting Started - Esbonio</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=d81277517bee4d6b0349d71bb2661d4890b5617c" />
-    <link rel="stylesheet" type="text/css" href="../_static/autodoc_pydantic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=91d0f0d1c444bdcb17a68e833c7a53903343c195" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
     
@@ -144,7 +144,7 @@
   <aside class="sidebar-drawer">
     <div class="sidebar-container">
       
-      <div class="sidebar-sticky"><a class="sidebar-brand centered" href="../index.html">
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
   
   <div class="sidebar-logo-container">
     <img class="sidebar-logo" src="../_static/io.github.swyddfa.Esbonio.svg" alt="Logo"/>
@@ -153,7 +153,7 @@
   <span class="sidebar-brand-text">Esbonio</span>
   
 </a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
-  <input class="sidebar-search" placeholder=Chwilio name="q" aria-label="Chwilio">
+  <input class="sidebar-search" placeholder="Chwilio" name="q" aria-label="Chwilio">
   <input type="hidden" name="check_keywords" value="yes">
   <input type="hidden" name="area" value="default">
 </form>
@@ -174,16 +174,12 @@
 <li class="toctree-l2"><a class="reference internal" href="extending/api-reference.html">API Reference</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="how-to.html">How To</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="how-to/get-debug-info.html">How To: Get Debug Information</a></li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Sphinx Extensions</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../extensions/relevant_to.html">Relevent To</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../extensions/tutorial.html">Tutorial</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../extensions/tutorial.html">Tutorial</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../extensions/tutorial/formatting-example.html">Formatting Example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../extensions/tutorial/hello-world.html">Shwmae i gyd</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../extensions/tutorial/solution-example.html">Solution Example</a></li>
@@ -258,6 +254,7 @@ sure on where to start, <a class="reference external" href="https://github.com/s
 <option data-id="emacs-lsp-mode" value="editor-emacs-lsp-mode-0">Emacs (lsp-mode)</option>
 <option data-id="kate" value="editor-kate-0">Kate</option>
 <option data-id="neovim-lspconfig" value="editor-neovim-lspconfig-0">Neovim (lspconfig)</option>
+<option data-id="sublime-text-lsp" value="editor-sublime-text-lsp-0">Sublime Text (LSP)</option>
 <option data-id="vim-coc-nvim" value="editor-vim-coc-nvim-0">Vim (coc.nvim)</option>
 <option data-id="vim-vim-lsp" value="editor-vim-vim-lsp-0">Vim (vim-lsp)</option>
 <option data-id="vscode-esbonio" value="editor-vscode-esbonio-0">VSCode (Esbonio)</option>
@@ -269,51 +266,29 @@ sure on where to start, <a class="reference external" href="https://github.com/s
 <hr />
 <section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">#</a></h2>
-<p>The language server can be installed using pip</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pip install esbonio
-</pre></div>
-</div>
-<p>Sphinx and the reStructuredText format itself are highly extensible so the available
-features can differ greatly from project to project. For this reason the
-language server should be installed into the same environment you use when
-building your documentation e.g.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">source</span> .env/bin/activate
-<span class="gp gp-VirtualEnv">(.env)</span> <span class="gp">$ </span>pip install esbonio
-</pre></div>
-</div>
-<p>Otherwise the language server will fail to properly understand your project.</p>
-<p>If you want to try the latest developments before they are released you can use <code class="docutils literal notranslate"><span class="pre">pip</span></code> to install from the development branch.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pip install <span class="s2">&quot;git+https://github.com/swyddfa/esbonio#egg=esbonio&amp;subdirectory=lib/esbonio&quot;</span>
-</pre></div>
-</div>
-<p>For more information on this command see the documentation on pip's <a class="reference external" href="https://pip.pypa.io/en/stable/topics/vcs-support/">VCS Support</a>.</p>
+<p>The language server can be installed using pip, or if you prefer, conda.</p>
+<p>Sphinx and the reStructuredText format itself are highly extensible so the available features can differ greatly from project to project.
+For this reason the <code class="docutils literal notranslate"><span class="pre">esbonio</span></code> should be installed into the same environment you use when building your documentation.
+Otherwise the language server will fail to properly understand your project.</p>
 
 <hr />
 <div class="pt-2">
-  <label>Editor:</label>
+  <label>Package Manager:</label>
 
   <select name="subject"
           class="mb-2"
           hx-get="getting-started/:subject.html"
           hx-target="#group-1"
-          data-category="editor"
+          data-category="package-manager"
           data-kind="relevant-to">
-    <option data-id="emacs-eglot" value="editor-emacs-eglot-1">Emacs (eglot)</option>
-<option data-id="emacs-lsp-mode" value="editor-emacs-lsp-mode-1">Emacs (lsp-mode)</option>
-<option data-id="kate" value="editor-kate-1">Kate</option>
-<option data-id="neovim-lspconfig" value="editor-neovim-lspconfig-1">Neovim (lspconfig)</option>
-<option data-id="vim-coc-nvim" value="editor-vim-coc-nvim-1">Vim (coc.nvim)</option>
-<option data-id="vim-vim-lsp" value="editor-vim-vim-lsp-1">Vim (vim-lsp)</option>
-<option data-id="vscode-esbonio" value="editor-vscode-esbonio-1">VSCode (Esbonio)</option>
+    <option data-id="conda" value="package-manager-conda-0">conda</option>
+<option data-id="pip" value="package-manager-pip-0">pip</option>
   </select>
 
   <div id="group-1">
   </div>
 </div>
 <hr />
-</section>
-<section id="configuration">
-<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this heading">#</a></h2>
 
 <hr />
 <div class="pt-2">
@@ -325,16 +300,45 @@ building your documentation e.g.</p>
           hx-target="#group-2"
           data-category="editor"
           data-kind="relevant-to">
+    <option data-id="emacs-eglot" value="editor-emacs-eglot-1">Emacs (eglot)</option>
+<option data-id="emacs-lsp-mode" value="editor-emacs-lsp-mode-1">Emacs (lsp-mode)</option>
+<option data-id="kate" value="editor-kate-1">Kate</option>
+<option data-id="neovim-lspconfig" value="editor-neovim-lspconfig-1">Neovim (lspconfig)</option>
+<option data-id="sublime-text-lsp" value="editor-sublime-text-lsp-1">Sublime Text (LSP)</option>
+<option data-id="vim-coc-nvim" value="editor-vim-coc-nvim-1">Vim (coc.nvim)</option>
+<option data-id="vim-vim-lsp" value="editor-vim-vim-lsp-1">Vim (vim-lsp)</option>
+<option data-id="vscode-esbonio" value="editor-vscode-esbonio-1">VSCode (Esbonio)</option>
+  </select>
+
+  <div id="group-2">
+  </div>
+</div>
+<hr />
+</section>
+<section id="configuration">
+<span id="lsp-configuration"></span><h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this heading">#</a></h2>
+
+<hr />
+<div class="pt-2">
+  <label>Editor:</label>
+
+  <select name="subject"
+          class="mb-2"
+          hx-get="getting-started/:subject.html"
+          hx-target="#group-3"
+          data-category="editor"
+          data-kind="relevant-to">
     <option data-id="emacs-eglot" value="editor-emacs-eglot-2">Emacs (eglot)</option>
 <option data-id="emacs-lsp-mode" value="editor-emacs-lsp-mode-2">Emacs (lsp-mode)</option>
-<option data-id="kate" value="">Kate</option>
+<option data-id="kate" value="editor-kate-2">Kate</option>
 <option data-id="neovim-lspconfig" value="editor-neovim-lspconfig-2">Neovim (lspconfig)</option>
+<option data-id="sublime-text-lsp" value="editor-sublime-text-lsp-2">Sublime Text (LSP)</option>
 <option data-id="vim-coc-nvim" value="editor-vim-coc-nvim-2">Vim (coc.nvim)</option>
 <option data-id="vim-vim-lsp" value="editor-vim-vim-lsp-2">Vim (vim-lsp)</option>
 <option data-id="vscode-esbonio" value="editor-vscode-esbonio-2">VSCode (Esbonio)</option>
   </select>
 
-  <div id="group-2">
+  <div id="group-3">
   </div>
 </div>
 <hr />
@@ -382,7 +386,7 @@ Currently accepted values include:</p>
 <dt class="sig sig-object std" id="confval-sphinx.configOverrides-object">
 <span class="sig-name descname"><span class="pre">sphinx.configOverrides</span> <span class="pre">(object)</span></span><a class="headerlink" href="#confval-sphinx.configOverrides-object" title="Permalink i'r diffiniad hwn">#</a></dt>
 <dd><p>This option can be used to override values set in the project's <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> file.
-This covers both the <a class="reference external" href="https://www.sphinx-doc.org/en/master/man/sphinx-build.html#cmdoption-sphinx-build-D" title="(yn Sphinx v6.0.0b3)"><code class="xref std std-option docutils literal notranslate"><span class="pre">sphinx-build</span> <span class="pre">-D</span></code></a> and <a class="reference external" href="https://www.sphinx-doc.org/en/master/man/sphinx-build.html#cmdoption-sphinx-build-A" title="(yn Sphinx v6.0.0b3)"><code class="xref std std-option docutils literal notranslate"><span class="pre">sphinx-build</span> <span class="pre">-A</span></code></a> cli options.</p>
+This covers both the <a class="reference external" href="https://www.sphinx-doc.org/en/master/man/sphinx-build.html#cmdoption-sphinx-build-D" title="(yn Sphinx v6.2.0)"><code class="xref std std-option docutils literal notranslate"><span class="pre">sphinx-build</span> <span class="pre">-D</span></code></a> and <a class="reference external" href="https://www.sphinx-doc.org/en/master/man/sphinx-build.html#cmdoption-sphinx-build-A" title="(yn Sphinx v6.2.0)"><code class="xref std std-option docutils literal notranslate"><span class="pre">sphinx-build</span> <span class="pre">-A</span></code></a> cli options.</p>
 <p>For example the cli argument <code class="docutils literal notranslate"><span class="pre">-Dlanguage=cy</span></code> overrides a project's language, the equivalent setting using the <code class="docutils literal notranslate"><span class="pre">configOverrides</span></code> setting would be:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{
    &quot;sphinx.configOverrides&quot;: {
@@ -432,8 +436,8 @@ Currently accepted values include:</p>
 <dl class="std confval">
 <dt class="sig sig-object std" id="confval-sphinx.makeMode-boolean">
 <span class="sig-name descname"><span class="pre">sphinx.makeMode</span> <span class="pre">(boolean)</span></span><a class="headerlink" href="#confval-sphinx.makeMode-boolean" title="Permalink i'r diffiniad hwn">#</a></dt>
-<dd><p>If <code class="docutils literal notranslate"><span class="pre">true</span></code> the language server will behave like <code class="docutils literal notranslate"><span class="pre">sphinx-build</span></code> when invoked with the <a class="reference external" href="https://www.sphinx-doc.org/en/master/man/sphinx-build.html#cmdoption-sphinx-build-M" title="(yn Sphinx v6.0.0b3)"><code class="xref std std-option docutils literal notranslate"><span class="pre">-M</span></code></a> argument.
-If <code class="docutils literal notranslate"><span class="pre">false</span></code> the language server will behave like <code class="docutils literal notranslate"><span class="pre">sphinx-build</span></code> when invoked with the <a class="reference external" href="https://www.sphinx-doc.org/en/master/man/sphinx-build.html#cmdoption-sphinx-build-b" title="(yn Sphinx v6.0.0b3)"><code class="xref std std-option docutils literal notranslate"><span class="pre">-b</span></code></a> argument.
+<dd><p>If <code class="docutils literal notranslate"><span class="pre">true</span></code> the language server will behave like <code class="docutils literal notranslate"><span class="pre">sphinx-build</span></code> when invoked with the <a class="reference external" href="https://www.sphinx-doc.org/en/master/man/sphinx-build.html#cmdoption-sphinx-build-M" title="(yn Sphinx v6.2.0)"><code class="xref std std-option docutils literal notranslate"><span class="pre">-M</span></code></a> argument.
+If <code class="docutils literal notranslate"><span class="pre">false</span></code> the language server will behave like <code class="docutils literal notranslate"><span class="pre">sphinx-build</span></code> when invoked with the <a class="reference external" href="https://www.sphinx-doc.org/en/master/man/sphinx-build.html#cmdoption-sphinx-build-b" title="(yn Sphinx v6.2.0)"><code class="xref std std-option docutils literal notranslate"><span class="pre">-b</span></code></a> argument.
 (Default: <code class="docutils literal notranslate"><span class="pre">true</span></code>)</p>
 </dd></dl>
 
@@ -449,7 +453,7 @@ Setting this value to <code class="docutils literal notranslate"><span class="pr
 <dt class="sig sig-object std" id="confval-sphinx.quiet-boolean">
 <span class="sig-name descname"><span class="pre">sphinx.quiet</span> <span class="pre">(boolean)</span></span><a class="headerlink" href="#confval-sphinx.quiet-boolean" title="Permalink i'r diffiniad hwn">#</a></dt>
 <dd><p>Hides all standard Sphinx output messages.
-Equivalent to the <a class="reference external" href="https://www.sphinx-doc.org/en/master/man/sphinx-build.html#cmdoption-sphinx-build-q" title="(yn Sphinx v6.0.0b3)"><code class="xref std std-option docutils literal notranslate"><span class="pre">sphinx-build</span> <span class="pre">-q</span></code></a> cli option.
+Equivalent to the <a class="reference external" href="https://www.sphinx-doc.org/en/master/man/sphinx-build.html#cmdoption-sphinx-build-q" title="(yn Sphinx v6.2.0)"><code class="xref std std-option docutils literal notranslate"><span class="pre">sphinx-build</span> <span class="pre">-q</span></code></a> cli option.
 (Default <code class="docutils literal notranslate"><span class="pre">false</span></code>)</p>
 </dd></dl>
 
@@ -457,7 +461,7 @@ Equivalent to the <a class="reference external" href="https://www.sphinx-doc.org
 <dt class="sig sig-object std" id="confval-sphinx.silent-boolean">
 <span class="sig-name descname"><span class="pre">sphinx.silent</span> <span class="pre">(boolean)</span></span><a class="headerlink" href="#confval-sphinx.silent-boolean" title="Permalink i'r diffiniad hwn">#</a></dt>
 <dd><p>Hides all Sphinx output.
-Equivalent to the <a class="reference external" href="https://www.sphinx-doc.org/en/master/man/sphinx-build.html#cmdoption-sphinx-build-Q" title="(yn Sphinx v6.0.0b3)"><code class="xref std std-option docutils literal notranslate"><span class="pre">sphinx-build</span> <span class="pre">-Q</span></code></a> cli option.
+Equivalent to the <a class="reference external" href="https://www.sphinx-doc.org/en/master/man/sphinx-build.html#cmdoption-sphinx-build-Q" title="(yn Sphinx v6.2.0)"><code class="xref std std-option docutils literal notranslate"><span class="pre">sphinx-build</span> <span class="pre">-Q</span></code></a> cli option.
 (Default <code class="docutils literal notranslate"><span class="pre">false</span></code>)</p>
 </dd></dl>
 
@@ -479,7 +483,7 @@ Currently accepted values include:</p>
 <dt class="sig sig-object std" id="confval-sphinx.tags-string">
 <span class="sig-name descname"><span class="pre">sphinx.tags</span> <span class="pre">(string[])</span></span><a class="headerlink" href="#confval-sphinx.tags-string" title="Permalink i'r diffiniad hwn">#</a></dt>
 <dd><p>A list of tags to enable.
-See the documentation on the <a class="reference external" href="https://www.sphinx-doc.org/en/master/man/sphinx-build.html#cmdoption-sphinx-build-t" title="(yn Sphinx v6.0.0b3)"><code class="xref std std-option docutils literal notranslate"><span class="pre">sphinx-build</span> <span class="pre">-t</span></code></a> cli option for more details.
+See the documentation on the <a class="reference external" href="https://www.sphinx-doc.org/en/master/man/sphinx-build.html#cmdoption-sphinx-build-t" title="(yn Sphinx v6.2.0)"><code class="xref std std-option docutils literal notranslate"><span class="pre">sphinx-build</span> <span class="pre">-t</span></code></a> cli option for more details.
 (Default: <code class="docutils literal notranslate"><span class="pre">[]</span></code>)</p>
 </dd></dl>
 
@@ -499,6 +503,24 @@ See the documentation on the <a class="reference external" href="https://www.sph
 <section id="server-options">
 <h3>Server Options<a class="headerlink" href="#server-options" title="Permalink to this heading">#</a></h3>
 <p>The following options control the behavior of the language server as a whole.</p>
+<dl class="std confval">
+<dt class="sig sig-object std" id="confval-server.completion.preferredInsertBehavior-string">
+<span class="sig-name descname"><span class="pre">server.completion.preferredInsertBehavior</span> <span class="pre">(string)</span></span><a class="headerlink" href="#confval-server.completion.preferredInsertBehavior-string" title="Permalink i'r diffiniad hwn">#</a></dt>
+<dd><p>Controls how completions behave when accepted, the following values are supported.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">replace</span></code> (default)</p>
+<p>Accepted completions will replace existing text, allowing the server to rewrite the current line in place.
+This allows the server to return all possible completions within the current context.
+In this mode the server will set the <code class="docutils literal notranslate"><span class="pre">textEdit</span></code> field of a <code class="docutils literal notranslate"><span class="pre">CompletionItem</span></code>.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">insert</span></code></p>
+<p>Accepted completions will append to existing text rather than replacing it.
+Since rewriting is not possible, only the completions that are compatible with any existing text will be returned.
+In this mode the server will set the <code class="docutils literal notranslate"><span class="pre">insertText</span></code> field of a <code class="docutils literal notranslate"><span class="pre">CompletionItem</span></code> which should work better with editors that do no support <code class="docutils literal notranslate"><span class="pre">textEdits</span></code>.</p>
+</li>
+</ul>
+</dd></dl>
+
 <dl class="std confval">
 <dt class="sig sig-object std" id="confval-server.enableScrollSync-boolean">
 <span class="sig-name descname"><span class="pre">server.enableScrollSync</span> <span class="pre">(boolean)</span></span><a class="headerlink" href="#confval-server.enableScrollSync-boolean" title="Permalink i'r diffiniad hwn">#</a></dt>
@@ -562,19 +584,20 @@ to help get you started.</p>
   <select name="subject"
           class="mb-2"
           hx-get="getting-started/:subject.html"
-          hx-target="#group-3"
+          hx-target="#group-4"
           data-category="editor"
           data-kind="relevant-to">
     <option data-id="emacs-eglot" value="editor-emacs-eglot-3">Emacs (eglot)</option>
 <option data-id="emacs-lsp-mode" value="editor-emacs-lsp-mode-3">Emacs (lsp-mode)</option>
 <option data-id="kate" value="">Kate</option>
 <option data-id="neovim-lspconfig" value="editor-neovim-lspconfig-3">Neovim (lspconfig)</option>
+<option data-id="sublime-text-lsp" value="editor-sublime-text-lsp-3">Sublime Text (LSP)</option>
 <option data-id="vim-coc-nvim" value="editor-vim-coc-nvim-3">Vim (coc.nvim)</option>
 <option data-id="vim-vim-lsp" value="editor-vim-vim-lsp-3">Vim (vim-lsp)</option>
 <option data-id="vscode-esbonio" value="">VSCode (Esbonio)</option>
   </select>
 
-  <div id="group-3">
+  <div id="group-4">
   </div>
 </div>
 <hr />
@@ -590,19 +613,20 @@ to help get you started.</p>
   <select name="subject"
           class="mb-2"
           hx-get="getting-started/:subject.html"
-          hx-target="#group-4"
+          hx-target="#group-5"
           data-category="editor"
           data-kind="relevant-to">
     <option data-id="emacs-eglot" value="">Emacs (eglot)</option>
 <option data-id="emacs-lsp-mode" value="">Emacs (lsp-mode)</option>
 <option data-id="kate" value="">Kate</option>
 <option data-id="neovim-lspconfig" value="editor-neovim-lspconfig-4">Neovim (lspconfig)</option>
+<option data-id="sublime-text-lsp" value="editor-sublime-text-lsp-4">Sublime Text (LSP)</option>
 <option data-id="vim-coc-nvim" value="editor-vim-coc-nvim-4">Vim (coc.nvim)</option>
 <option data-id="vim-vim-lsp" value="editor-vim-vim-lsp-4">Vim (vim-lsp)</option>
 <option data-id="vscode-esbonio" value="">VSCode (Esbonio)</option>
   </select>
 
-  <div id="group-4">
+  <div id="group-5">
   </div>
 </div>
 <hr />
@@ -617,19 +641,20 @@ to help get you started.</p>
   <select name="subject"
           class="mb-2"
           hx-get="getting-started/:subject.html"
-          hx-target="#group-5"
+          hx-target="#group-6"
           data-category="editor"
           data-kind="relevant-to">
     <option data-id="emacs-eglot" value="">Emacs (eglot)</option>
 <option data-id="emacs-lsp-mode" value="">Emacs (lsp-mode)</option>
 <option data-id="kate" value="">Kate</option>
 <option data-id="neovim-lspconfig" value="">Neovim (lspconfig)</option>
+<option data-id="sublime-text-lsp" value="">Sublime Text (LSP)</option>
 <option data-id="vim-coc-nvim" value="">Vim (coc.nvim)</option>
 <option data-id="vim-vim-lsp" value="">Vim (vim-lsp)</option>
 <option data-id="vscode-esbonio" value="editor-vscode-esbonio-3">VSCode (Esbonio)</option>
   </select>
 
-  <div id="group-5">
+  <div id="group-6">
   </div>
 </div>
 <hr />
@@ -761,7 +786,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="bottom-of-page">
           <div class="left-details">
             <div class="copyright">
-                Copyright &#169; 2022
+                Copyright &#169; 2023
             </div>
             Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
             
@@ -769,9 +794,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
           </div>
           <div class="right-details">
-            <div class="icons">
-              
-            </div>
+            
           </div>
         </div>
         
@@ -811,9 +834,6 @@ document.addEventListener('DOMContentLoaded', () => {
     </aside>
   </div>
 </div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/scripts/furo.js"></script>

@@ -4,11 +4,11 @@
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" />
 
-    <link rel="shortcut icon" href="../../../_static/favicon.svg"/><meta name="generator" content="sphinx-5.3.0, furo 2022.09.29"/>
+    <link rel="shortcut icon" href="../../../_static/favicon.svg"/><!-- Generated with Sphinx 6.1.3 and Furo 2022.12.07 -->
         <title>esbonio.lsp.sphinx - Esbonio</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?digest=d81277517bee4d6b0349d71bb2661d4890b5617c" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/autodoc_pydantic.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?digest=91d0f0d1c444bdcb17a68e833c7a53903343c195" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
     
@@ -143,7 +143,7 @@
   <aside class="sidebar-drawer">
     <div class="sidebar-container">
       
-      <div class="sidebar-sticky"><a class="sidebar-brand centered" href="../../../index.html">
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../../index.html">
   
   <div class="sidebar-logo-container">
     <img class="sidebar-logo" src="../../../_static/io.github.swyddfa.Esbonio.svg" alt="Logo"/>
@@ -152,7 +152,7 @@
   <span class="sidebar-brand-text">Esbonio</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
-  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
   <input type="hidden" name="check_keywords" value="yes">
   <input type="hidden" name="area" value="default">
 </form>
@@ -173,16 +173,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../lsp/extending/api-reference.html">API Reference</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../../lsp/how-to.html">How To</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../lsp/how-to/get-debug-info.html">How To: Get Debug Information</a></li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Sphinx Extensions</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../extensions/relevant_to.html">Relevent To</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../../extensions/tutorial.html">Tutorial</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../extensions/tutorial.html">Tutorial</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../extensions/tutorial/formatting-example.html">Formatting Example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../extensions/tutorial/hello-world.html">Hello World</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../extensions/tutorial/solution-example.html">Solution Example</a></li>
@@ -245,16 +241,16 @@
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span>
 
 <span class="kn">import</span> <span class="nn">pygls.uris</span> <span class="k">as</span> <span class="nn">Uri</span>
-<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">DeleteFilesParams</span>
-<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">Diagnostic</span>
-<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">DiagnosticSeverity</span>
-<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">DidSaveTextDocumentParams</span>
-<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">InitializedParams</span>
-<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">InitializeParams</span>
-<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">MessageType</span>
-<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">Position</span>
-<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">Range</span>
-<span class="kn">from</span> <span class="nn">pygls.lsp.types</span> <span class="kn">import</span> <span class="n">ShowDocumentParams</span>
+<span class="kn">from</span> <span class="nn">lsprotocol.types</span> <span class="kn">import</span> <span class="n">DeleteFilesParams</span>
+<span class="kn">from</span> <span class="nn">lsprotocol.types</span> <span class="kn">import</span> <span class="n">Diagnostic</span>
+<span class="kn">from</span> <span class="nn">lsprotocol.types</span> <span class="kn">import</span> <span class="n">DiagnosticSeverity</span>
+<span class="kn">from</span> <span class="nn">lsprotocol.types</span> <span class="kn">import</span> <span class="n">DidSaveTextDocumentParams</span>
+<span class="kn">from</span> <span class="nn">lsprotocol.types</span> <span class="kn">import</span> <span class="n">InitializedParams</span>
+<span class="kn">from</span> <span class="nn">lsprotocol.types</span> <span class="kn">import</span> <span class="n">InitializeParams</span>
+<span class="kn">from</span> <span class="nn">lsprotocol.types</span> <span class="kn">import</span> <span class="n">MessageType</span>
+<span class="kn">from</span> <span class="nn">lsprotocol.types</span> <span class="kn">import</span> <span class="n">Position</span>
+<span class="kn">from</span> <span class="nn">lsprotocol.types</span> <span class="kn">import</span> <span class="n">Range</span>
+<span class="kn">from</span> <span class="nn">lsprotocol.types</span> <span class="kn">import</span> <span class="n">ShowDocumentParams</span>
 <span class="kn">from</span> <span class="nn">sphinx</span> <span class="kn">import</span> <span class="n">__version__</span> <span class="k">as</span> <span class="n">__sphinx_version__</span>
 <span class="kn">from</span> <span class="nn">sphinx.application</span> <span class="kn">import</span> <span class="n">Sphinx</span>
 <span class="kn">from</span> <span class="nn">sphinx.domains</span> <span class="kn">import</span> <span class="n">Domain</span>
@@ -306,35 +302,35 @@
 
 
 <div class="viewcode-block" id="SphinxLanguageServer"><a class="viewcode-back" href="../../../lsp/extending/api-reference.html#esbonio.lsp.sphinx.SphinxLanguageServer">[docs]</a><span class="k">class</span> <span class="nc">SphinxLanguageServer</span><span class="p">(</span><span class="n">RstLanguageServer</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;A language server dedicated to working with Sphinx projects.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A language server dedicated to working with Sphinx projects.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sphinx</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="sd">&quot;&quot;&quot;The Sphinx application instance.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The Sphinx application instance.&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">sphinx_args</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="sd">&quot;&quot;&quot;The current Sphinx configuration will all variables expanded.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The current Sphinx configuration will all variables expanded.&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">sphinx_log</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">SphinxLogHandler</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="sd">&quot;&quot;&quot;Logging handler for sphinx messages.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Logging handler for sphinx messages.&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">preview_process</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Process</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="sd">&quot;&quot;&quot;The process hosting the preview server.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The process hosting the preview server.&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">preview_port</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="sd">&quot;&quot;&quot;The port the preview server is running on.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The port the preview server is running on.&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_role_target_types</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="sd">&quot;&quot;&quot;Cache for role target types.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Cache for role target types.&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">file_list_pending_build_version_updates</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="sd">&quot;&quot;&quot;List of all the files that need an updated last_build_version&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;List of all the files that need an updated last_build_version&quot;&quot;&quot;</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Return the server&#39;s actual configuration.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the server&#39;s actual configuration.&quot;&quot;&quot;</span>
         <span class="n">config</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">configuration</span>
         <span class="n">sphinx_config</span> <span class="o">=</span> <span class="n">SphinxConfig</span><span class="o">.</span><span class="n">from_arguments</span><span class="p">(</span><span class="n">sphinx_args</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sphinx_args</span><span class="p">)</span>
 
@@ -354,18 +350,18 @@
         <span class="c1"># &#39;Make mode&#39; isn&#39;t something that can be inferred from Sphinx args either.</span>
         <span class="n">sphinx_config</span><span class="o">.</span><span class="n">make_mode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_config</span><span class="o">.</span><span class="n">sphinx</span><span class="o">.</span><span class="n">make_mode</span>  <span class="c1"># type: ignore</span>
 
-        <span class="n">config</span><span class="p">[</span><span class="s2">&quot;sphinx&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="o">**</span><span class="n">sphinx_config</span><span class="o">.</span><span class="n">dict</span><span class="p">(</span><span class="n">by_alias</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+        <span class="n">config</span><span class="p">[</span><span class="s2">&quot;sphinx&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">converter</span><span class="o">.</span><span class="n">unstructure</span><span class="p">(</span><span class="n">sphinx_config</span><span class="p">)</span>
         <span class="n">config</span><span class="p">[</span><span class="s2">&quot;sphinx&quot;</span><span class="p">][</span><span class="s2">&quot;command&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;sphinx-build&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">sphinx_config</span><span class="o">.</span><span class="n">to_cli_args</span><span class="p">()</span>
         <span class="n">config</span><span class="p">[</span><span class="s2">&quot;sphinx&quot;</span><span class="p">][</span><span class="s2">&quot;version&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">__sphinx_version__</span>
 
-        <span class="n">config</span><span class="p">[</span><span class="s2">&quot;server&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_config</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">dict</span><span class="p">(</span><span class="n">by_alias</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
+        <span class="n">config</span><span class="p">[</span><span class="s2">&quot;server&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">converter</span><span class="o">.</span><span class="n">unstructure</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user_config</span><span class="o">.</span><span class="n">server</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">config</span>
 
     <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">InitializeParams</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">user_config</span> <span class="o">=</span> <span class="n">InitializationOptions</span><span class="p">(</span>
-            <span class="o">**</span><span class="n">typing</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">Dict</span><span class="p">,</span> <span class="n">params</span><span class="o">.</span><span class="n">initialization_options</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user_config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">converter</span><span class="o">.</span><span class="n">structure</span><span class="p">(</span>
+            <span class="n">params</span><span class="o">.</span><span class="n">initialization_options</span><span class="p">,</span> <span class="n">InitializationOptions</span>
         <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">initialized</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">InitializedParams</span><span class="p">):</span>
@@ -446,7 +442,7 @@
 <div class="viewcode-block" id="SphinxLanguageServer.build"><a class="viewcode-back" href="../../../lsp/extending/api-reference.html#esbonio.lsp.sphinx.SphinxLanguageServer.build">[docs]</a>    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">force_all</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">filenames</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Trigger sphinx build. Force complete rebuild with flag or build only selected files in the list.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Trigger sphinx build. Force complete rebuild with flag or build only selected files in the list.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="p">:</span>
             <span class="k">return</span>
 
@@ -487,7 +483,7 @@
         <span class="p">)</span></div>
 
 <div class="viewcode-block" id="SphinxLanguageServer.cb_env_before_read_docs"><a class="viewcode-back" href="../../../lsp/extending/api-reference.html#esbonio.lsp.sphinx.SphinxLanguageServer.cb_env_before_read_docs">[docs]</a>    <span class="k">def</span> <span class="nf">cb_env_before_read_docs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">docnames</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>
-        <span class="sd">&quot;&quot;&quot;Callback handling env-before-read-docs event.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Callback handling env-before-read-docs event.&quot;&quot;&quot;</span>
 
         <span class="c1"># Determine if any unsaved files need to be added to the build list</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_config</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">enable_live_preview</span><span class="p">:</span>  <span class="c1"># type: ignore</span>
@@ -515,7 +511,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">file_list_pending_build_version_updates</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">uri</span><span class="p">,</span> <span class="n">current_version</span><span class="p">))</span>  <span class="c1"># type: ignore</span></div>
 
 <div class="viewcode-block" id="SphinxLanguageServer.cb_build_finished"><a class="viewcode-back" href="../../../lsp/extending/api-reference.html#esbonio.lsp.sphinx.SphinxLanguageServer.cb_build_finished">[docs]</a>    <span class="k">def</span> <span class="nf">cb_build_finished</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app</span><span class="p">,</span> <span class="n">exception</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Callback handling build-finished event.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Callback handling build-finished event.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">exception</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">file_list_pending_build_version_updates</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="k">return</span>
@@ -529,7 +525,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">file_list_pending_build_version_updates</span> <span class="o">=</span> <span class="p">[]</span></div>
 
 <div class="viewcode-block" id="SphinxLanguageServer.cb_source_read"><a class="viewcode-back" href="../../../lsp/extending/api-reference.html#esbonio.lsp.sphinx.SphinxLanguageServer.cb_source_read">[docs]</a>    <span class="k">def</span> <span class="nf">cb_source_read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app</span><span class="p">,</span> <span class="n">docname</span><span class="p">,</span> <span class="n">source</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Callback handling source_read event.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Callback handling source_read event.&quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_config</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">enable_live_preview</span><span class="p">:</span>  <span class="c1"># type: ignore</span>
             <span class="k">return</span>
@@ -541,12 +537,14 @@
         <span class="n">source</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">source</span></div>
 
 <div class="viewcode-block" id="SphinxLanguageServer.create_sphinx_app"><a class="viewcode-back" href="../../../lsp/extending/api-reference.html#esbonio.lsp.sphinx.SphinxLanguageServer.create_sphinx_app">[docs]</a>    <span class="k">def</span> <span class="nf">create_sphinx_app</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">InitializationOptions</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sphinx</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Create a Sphinx application instance with the given config.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a Sphinx application instance with the given config.&quot;&quot;&quot;</span>
         <span class="n">sphinx</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">sphinx</span>
         <span class="n">server</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">server</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Workspace root &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">workspace</span><span class="o">.</span><span class="n">root_uri</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;User Config </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">sphinx</span><span class="o">.</span><span class="n">dict</span><span class="p">(),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+            <span class="s2">&quot;User Config </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">converter</span><span class="o">.</span><span class="n">unstructure</span><span class="p">(</span><span class="n">sphinx</span><span class="p">),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="p">)</span>
 
         <span class="n">sphinx_config</span> <span class="o">=</span> <span class="n">sphinx</span><span class="o">.</span><span class="n">resolve</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">workspace</span><span class="o">.</span><span class="n">root_uri</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sphinx_args</span> <span class="o">=</span> <span class="n">sphinx_config</span><span class="o">.</span><span class="n">to_application_args</span><span class="p">()</span>
@@ -605,7 +603,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">sphinx_log</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_load_sphinx_extensions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app</span><span class="p">:</span> <span class="n">Sphinx</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Loop through each of Sphinx&#39;s extensions and see if any contain server</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Loop through each of Sphinx&#39;s extensions and see if any contain server</span>
 <span class="sd">        functionality.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -622,7 +620,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">load_extension</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">setup</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_load_sphinx_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app</span><span class="p">:</span> <span class="n">Sphinx</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Try and load the config as an server extension.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Try and load the config as an server extension.&quot;&quot;&quot;</span>
 
         <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;&lt;sphinx-config&gt;&quot;</span>
 
@@ -675,7 +673,7 @@
 <div class="viewcode-block" id="SphinxLanguageServer.get_doctree"><a class="viewcode-back" href="../../../lsp/extending/api-reference.html#esbonio.lsp.sphinx.SphinxLanguageServer.get_doctree">[docs]</a>    <span class="k">def</span> <span class="nf">get_doctree</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">docname</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">uri</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Return the initial doctree corresponding to the specified document.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the initial doctree corresponding to the specified document.</span>
 
 <span class="sd">        The ``docname`` of a document is its path relative to the project&#39;s ``srcdir``</span>
 <span class="sd">        minus the extension e.g. the docname of the file ``docs/lsp/features.rst``</span>
@@ -707,7 +705,7 @@
             <span class="k">return</span> <span class="kc">None</span></div>
 
 <div class="viewcode-block" id="SphinxLanguageServer.get_domain"><a class="viewcode-back" href="../../../lsp/extending/api-reference.html#esbonio.lsp.sphinx.SphinxLanguageServer.get_domain">[docs]</a>    <span class="k">def</span> <span class="nf">get_domain</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Domain</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Return the domain with the given name.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the domain with the given name.</span>
 
 <span class="sd">        .. deprecated:: 0.15.0</span>
 
@@ -735,7 +733,7 @@
         <span class="k">return</span> <span class="n">domains</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="SphinxLanguageServer.get_domains"><a class="viewcode-back" href="../../../lsp/extending/api-reference.html#esbonio.lsp.sphinx.SphinxLanguageServer.get_domains">[docs]</a>    <span class="k">def</span> <span class="nf">get_domains</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Domain</span><span class="p">]]:</span>
-        <span class="sd">&quot;&quot;&quot;Get all the domains registered with an applications.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get all the domains registered with an applications.</span>
 
 <span class="sd">        .. deprecated:: 0.15.0</span>
 
@@ -774,7 +772,7 @@
             <span class="k">yield</span> <span class="n">prefix</span><span class="p">,</span> <span class="n">domain</span></div>
 
 <div class="viewcode-block" id="SphinxLanguageServer.get_directive_options"><a class="viewcode-back" href="../../../lsp/extending/api-reference.html#esbonio.lsp.sphinx.SphinxLanguageServer.get_directive_options">[docs]</a>    <span class="k">def</span> <span class="nf">get_directive_options</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Return the options specification for the given directive.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the options specification for the given directive.</span>
 
 <span class="sd">        .. deprecated:: 0.14.2</span>
 
@@ -808,7 +806,7 @@
         <span class="k">return</span> <span class="n">options</span> <span class="ow">or</span> <span class="p">{}</span></div>
 
 <div class="viewcode-block" id="SphinxLanguageServer.get_default_role"><a class="viewcode-back" href="../../../lsp/extending/api-reference.html#esbonio.lsp.sphinx.SphinxLanguageServer.get_default_role">[docs]</a>    <span class="k">def</span> <span class="nf">get_default_role</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
-        <span class="sd">&quot;&quot;&quot;Return the project&#39;s default role&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the project&#39;s default role&quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
@@ -828,7 +826,7 @@
         <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="n">role</span></div>
 
 <div class="viewcode-block" id="SphinxLanguageServer.get_role_target_types"><a class="viewcode-back" href="../../../lsp/extending/api-reference.html#esbonio.lsp.sphinx.SphinxLanguageServer.get_role_target_types">[docs]</a>    <span class="k">def</span> <span class="nf">get_role_target_types</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">domain_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Return a map indicating which object types a role is capable of linking</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a map indicating which object types a role is capable of linking</span>
 <span class="sd">        with.</span>
 
 <span class="sd">        .. deprecated:: 0.15.0</span>
@@ -877,7 +875,7 @@
         <span class="k">return</span> <span class="n">types</span></div>
 
 <div class="viewcode-block" id="SphinxLanguageServer.get_role_targets"><a class="viewcode-back" href="../../../lsp/extending/api-reference.html#esbonio.lsp.sphinx.SphinxLanguageServer.get_role_targets">[docs]</a>    <span class="k">def</span> <span class="nf">get_role_targets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">domain</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">tuple</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Return a list of objects targeted by the given role.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a list of objects targeted by the given role.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -921,7 +919,7 @@
         <span class="k">return</span> <span class="n">targets</span></div>
 
 <div class="viewcode-block" id="SphinxLanguageServer.get_intersphinx_projects"><a class="viewcode-back" href="../../../lsp/extending/api-reference.html#esbonio.lsp.sphinx.SphinxLanguageServer.get_intersphinx_projects">[docs]</a>    <span class="k">def</span> <span class="nf">get_intersphinx_projects</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Return the list of configured intersphinx project names.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the list of configured intersphinx project names.</span>
 
 <span class="sd">        .. deprecated:: 0.15.0</span>
 
@@ -945,7 +943,7 @@
 <div class="viewcode-block" id="SphinxLanguageServer.has_intersphinx_targets"><a class="viewcode-back" href="../../../lsp/extending/api-reference.html#esbonio.lsp.sphinx.SphinxLanguageServer.has_intersphinx_targets">[docs]</a>    <span class="k">def</span> <span class="nf">has_intersphinx_targets</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">project</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">domain</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Return ``True`` if the given intersphinx project has targets targeted by the</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return ``True`` if the given intersphinx project has targets targeted by the</span>
 <span class="sd">        given role.</span>
 
 <span class="sd">        .. deprecated:: 0.15.0</span>
@@ -980,7 +978,7 @@
 <div class="viewcode-block" id="SphinxLanguageServer.get_intersphinx_targets"><a class="viewcode-back" href="../../../lsp/extending/api-reference.html#esbonio.lsp.sphinx.SphinxLanguageServer.get_intersphinx_targets">[docs]</a>    <span class="k">def</span> <span class="nf">get_intersphinx_targets</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">project</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">domain</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">]]:</span>
-        <span class="sd">&quot;&quot;&quot;Return the intersphinx objects targeted by the given role.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the intersphinx objects targeted by the given role.</span>
 
 <span class="sd">        .. deprecated:: 0.15.0</span>
 
@@ -1021,7 +1019,7 @@
                 <span class="n">targets</span><span class="p">[</span><span class="n">target_type</span><span class="p">]</span> <span class="o">=</span> <span class="n">inv</span><span class="p">[</span><span class="n">explicit_domain</span><span class="p">]</span>
                 <span class="k">continue</span>
 
-            <span class="n">primary_domain</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">primary_domain</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span><span class="si">}</span><span class="s1">:</span><span class="si">{</span><span class="n">target_type</span><span class="si">}</span><span class="s1">&#39;</span>
+            <span class="n">primary_domain</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">primary_domain</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="si">}</span><span class="s1">:</span><span class="si">{</span><span class="n">target_type</span><span class="si">}</span><span class="s1">&#39;</span>
             <span class="k">if</span> <span class="n">primary_domain</span> <span class="ow">in</span> <span class="n">inv</span><span class="p">:</span>
                 <span class="n">targets</span><span class="p">[</span><span class="n">target_type</span><span class="p">]</span> <span class="o">=</span> <span class="n">inv</span><span class="p">[</span><span class="n">primary_domain</span><span class="p">]</span>
                 <span class="k">continue</span>
@@ -1034,7 +1032,7 @@
 
 
 <span class="k">def</span> <span class="nf">exception_to_diagnostic</span><span class="p">(</span><span class="n">exc</span><span class="p">:</span> <span class="ne">BaseException</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Convert an exception into a diagnostic we can send to the client.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert an exception into a diagnostic we can send to the client.&quot;&quot;&quot;</span>
 
     <span class="c1"># Config errors sometimes wrap the true cause of the problem</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">exc</span><span class="p">,</span> <span class="n">ConfigError</span><span class="p">)</span> <span class="ow">and</span> <span class="n">exc</span><span class="o">.</span><span class="n">__cause__</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -1078,7 +1076,7 @@
         <div class="bottom-of-page">
           <div class="left-details">
             <div class="copyright">
-                Copyright &#169; 2022
+                Copyright &#169; 2023
             </div>
             Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
             
@@ -1086,9 +1084,7 @@
             
           </div>
           <div class="right-details">
-            <div class="icons">
-              
-            </div>
+            
           </div>
         </div>
         
@@ -1101,9 +1097,6 @@
     </aside>
   </div>
 </div><script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-    <script src="../../../_static/jquery.js"></script>
-    <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/scripts/furo.js"></script>

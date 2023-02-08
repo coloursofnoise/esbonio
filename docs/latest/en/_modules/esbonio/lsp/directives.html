@@ -762,7 +762,6 @@
     <span class="n">implementation_triggers</span> <span class="o">=</span> <span class="p">[</span><span class="n">DIRECTIVE</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">completion_resolve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="n">CompletionItem</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CompletionItem</span><span class="p">:</span>
-
         <span class="c1"># We need extra info to know who to call.</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">item</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">item</span>
@@ -779,7 +778,6 @@
         <span class="k">return</span> <span class="n">item</span>
 
     <span class="k">def</span> <span class="nf">complete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">CompletionContext</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">CompletionItem</span><span class="p">]:</span>
-
         <span class="c1"># Do not suggest completions within the middle of Python code.</span>
         <span class="k">if</span> <span class="n">context</span><span class="o">.</span><span class="n">location</span> <span class="o">==</span> <span class="s2">&quot;py&quot;</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">[]</span>
@@ -823,7 +821,6 @@
         <span class="k">return</span> <span class="n">items</span>
 
     <span class="k">def</span> <span class="nf">completion_resolve_directive</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="n">CompletionItem</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CompletionItem</span><span class="p">:</span>
-
         <span class="c1"># We need the detail field set to the implementation&#39;s fully qualified name.</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">item</span><span class="o">.</span><span class="n">detail</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">item</span>
@@ -840,7 +837,6 @@
         <span class="k">return</span> <span class="n">item</span>
 
     <span class="k">def</span> <span class="nf">complete_options</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">CompletionContext</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">CompletionItem</span><span class="p">]:</span>
-
         <span class="n">surrounding_directive</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_surrounding_directive</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">surrounding_directive</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">[]</span>
@@ -863,7 +859,6 @@
         <span class="k">return</span> <span class="n">items</span>
 
     <span class="k">def</span> <span class="nf">completion_resolve_option</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="n">CompletionItem</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CompletionItem</span><span class="p">:</span>
-
         <span class="c1"># We need the detail field set to the implementation&#39;s fully qualified name.</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">item</span><span class="o">.</span><span class="n">detail</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">item</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">item</span>
@@ -896,7 +891,6 @@
         <span class="k">return</span> <span class="n">item</span>
 
     <span class="k">def</span> <span class="nf">definition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">DefinitionContext</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Location</span><span class="p">]:</span>
-
         <span class="n">directive</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span>
         <span class="n">domain</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">)</span>
         <span class="n">argument</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s2">&quot;argument&quot;</span><span class="p">)</span>
@@ -919,7 +913,6 @@
         <span class="n">domain</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
         <span class="n">argument</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Location</span><span class="p">]:</span>
-
         <span class="n">definitions</span> <span class="o">=</span> <span class="p">[]</span>
 
         <span class="k">for</span> <span class="n">feature_name</span><span class="p">,</span> <span class="n">feature</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_features</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -945,7 +938,6 @@
     <span class="k">def</span> <span class="nf">resolve_argument_link</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">DocumentLinkContext</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">argument</span><span class="p">:</span> <span class="nb">str</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
-
         <span class="k">for</span> <span class="n">feature_name</span><span class="p">,</span> <span class="n">feature</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_features</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">target</span><span class="p">,</span> <span class="n">tooltip</span> <span class="o">=</span> <span class="n">feature</span><span class="o">.</span><span class="n">resolve_argument_link</span><span class="p">(</span>
@@ -971,7 +963,6 @@
 
         <span class="k">for</span> <span class="n">line</span><span class="p">,</span> <span class="n">text</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">doc</span><span class="o">.</span><span class="n">lines</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">DIRECTIVE</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
-
                 <span class="n">argument</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s2">&quot;argument&quot;</span><span class="p">)</span>
                 <span class="k">if</span> <span class="ow">not</span> <span class="n">argument</span><span class="p">:</span>
                     <span class="k">continue</span>
@@ -1003,7 +994,6 @@
         <span class="k">return</span> <span class="n">links</span>
 
     <span class="k">def</span> <span class="nf">hover</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">HoverContext</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-
         <span class="k">if</span> <span class="n">context</span><span class="o">.</span><span class="n">location</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">&quot;rst&quot;</span><span class="p">,</span> <span class="s2">&quot;docstring&quot;</span><span class="p">}:</span>
             <span class="k">return</span> <span class="s2">&quot;&quot;</span>
 
@@ -1024,7 +1014,6 @@
     <span class="k">def</span> <span class="nf">hover_directive</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">HoverContext</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">domain</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-
         <span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">domain</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">domain</span> <span class="k">else</span> <span class="n">name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Calculating hover for directive &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>
 
@@ -1044,7 +1033,6 @@
         <span class="k">return</span> <span class="n">documentation</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;description&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">implementation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">ImplementationContext</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Location</span><span class="p">]:</span>
-
         <span class="n">region</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s2">&quot;directive&quot;</span><span class="p">)</span>
         <span class="n">name</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span>
         <span class="n">domain</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s2">&quot;domain&quot;</span><span class="p">)</span>
@@ -1060,7 +1048,6 @@
     <span class="k">def</span> <span class="nf">find_directive_implementation</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">ImplementationContext</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">domain</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Location</span><span class="p">]:</span>
-
         <span class="n">impl</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_implementation</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">domain</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">impl</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">[]</span>

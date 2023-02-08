@@ -373,7 +373,6 @@
 
     <span class="nd">@server</span><span class="o">.</span><span class="n">feature</span><span class="p">(</span><span class="n">TEXT_DOCUMENT_DID_SAVE</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">on_save</span><span class="p">(</span><span class="n">ls</span><span class="p">:</span> <span class="n">RstLanguageServer</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">DidSaveTextDocumentParams</span><span class="p">):</span>
-
         <span class="n">ls</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">ls</span><span class="o">.</span><span class="n">_features</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
@@ -571,7 +570,6 @@
 
     <span class="nd">@server</span><span class="o">.</span><span class="n">feature</span><span class="p">(</span><span class="n">TEXT_DOCUMENT_DOCUMENT_SYMBOL</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">on_document_symbol</span><span class="p">(</span><span class="n">ls</span><span class="p">:</span> <span class="n">RstLanguageServer</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">DocumentSymbolParams</span><span class="p">):</span>
-
         <span class="n">doctree</span> <span class="o">=</span> <span class="n">ls</span><span class="o">.</span><span class="n">get_initial_doctree</span><span class="p">(</span><span class="n">uri</span><span class="o">=</span><span class="n">params</span><span class="o">.</span><span class="n">text_document</span><span class="o">.</span><span class="n">uri</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">doctree</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span>
@@ -635,7 +633,6 @@
 
         <span class="n">fields</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">o</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-
             <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">continue</span>
 

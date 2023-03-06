@@ -369,7 +369,6 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">_initialize_sphinx</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-
         <span class="k">try</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_sphinx_app</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user_config</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
         <span class="k">except</span> <span class="n">MissingConfigError</span><span class="p">:</span>
@@ -397,9 +396,7 @@
             <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">on_shutdown</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
-
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">preview_process</span><span class="p">:</span>
-
             <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">preview_process</span><span class="p">,</span> <span class="s2">&quot;kill&quot;</span><span class="p">):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">preview_process</span><span class="o">.</span><span class="n">terminate</span><span class="p">()</span>
             <span class="k">else</span><span class="p">:</span>
@@ -576,7 +573,6 @@
         <span class="n">status</span><span class="p">:</span> <span class="n">IO</span><span class="p">,</span>
         <span class="n">warning</span><span class="p">:</span> <span class="n">IO</span><span class="p">,</span>
     <span class="p">):</span>
-
         <span class="c1"># Disable color escape codes in Sphinx&#39;s log messages</span>
         <span class="n">console</span><span class="o">.</span><span class="n">nocolor</span><span class="p">()</span>
 
@@ -631,7 +627,6 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">load_extension</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">setup</span><span class="p">)</span>
 
 <div class="viewcode-block" id="SphinxLanguageServer.preview"><a class="viewcode-back" href="../../../lsp/extending/api-reference.html#esbonio.lsp.sphinx.SphinxLanguageServer.preview">[docs]</a>    <span class="k">def</span> <span class="nf">preview</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
-
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">builder</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">{}</span>
 
@@ -1013,7 +1008,6 @@
         <span class="n">inv</span> <span class="o">=</span> <span class="n">inv</span><span class="p">[</span><span class="n">project</span><span class="p">]</span>
 
         <span class="k">for</span> <span class="n">target_type</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_role_target_types</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">domain</span><span class="p">):</span>
-
             <span class="n">explicit_domain</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">domain</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">target_type</span><span class="si">}</span><span class="s2">&quot;</span>
             <span class="k">if</span> <span class="n">explicit_domain</span> <span class="ow">in</span> <span class="n">inv</span><span class="p">:</span>
                 <span class="n">targets</span><span class="p">[</span><span class="n">target_type</span><span class="p">]</span> <span class="o">=</span> <span class="n">inv</span><span class="p">[</span><span class="n">explicit_domain</span><span class="p">]</span>

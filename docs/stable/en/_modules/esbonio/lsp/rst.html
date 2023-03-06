@@ -298,7 +298,6 @@
         <span class="n">config</span><span class="p">:</span> <span class="n">ServerCompletionConfig</span><span class="p">,</span>
         <span class="n">capabilities</span><span class="p">:</span> <span class="n">ClientCapabilities</span><span class="p">,</span>
     <span class="p">):</span>
-
         <span class="bp">self</span><span class="o">.</span><span class="n">doc</span><span class="p">:</span> <span class="n">Document</span> <span class="o">=</span> <span class="n">doc</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;The document within which the completion request was made.&quot;&quot;&quot;</span>
 
@@ -398,7 +397,6 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Captures the context within which a document link request has been made.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">doc</span><span class="p">:</span> <span class="n">Document</span><span class="p">,</span> <span class="n">capabilities</span><span class="p">:</span> <span class="n">ClientCapabilities</span><span class="p">):</span>
-
         <span class="bp">self</span><span class="o">.</span><span class="n">doc</span> <span class="o">=</span> <span class="n">doc</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;The document within which the document link request was made.&quot;&quot;&quot;</span>
 
@@ -421,7 +419,6 @@
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">doc</span><span class="p">:</span> <span class="n">Document</span><span class="p">,</span> <span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">match</span><span class="p">:</span> <span class="s2">&quot;re.Match&quot;</span><span class="p">,</span> <span class="n">position</span><span class="p">:</span> <span class="n">Position</span>
     <span class="p">):</span>
-
         <span class="bp">self</span><span class="o">.</span><span class="n">doc</span> <span class="o">=</span> <span class="n">doc</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;The document within which the definition request was made.&quot;&quot;&quot;</span>
 
@@ -449,7 +446,6 @@
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">doc</span><span class="p">:</span> <span class="n">Document</span><span class="p">,</span> <span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">match</span><span class="p">:</span> <span class="s2">&quot;re.Match&quot;</span><span class="p">,</span> <span class="n">position</span><span class="p">:</span> <span class="n">Position</span>
     <span class="p">):</span>
-
         <span class="bp">self</span><span class="o">.</span><span class="n">doc</span> <span class="o">=</span> <span class="n">doc</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;The document within which the implementation request was made.&quot;&quot;&quot;</span>
 
@@ -480,7 +476,6 @@
         <span class="n">position</span><span class="p">:</span> <span class="n">Position</span><span class="p">,</span>
         <span class="n">capabilities</span><span class="p">:</span> <span class="n">ClientCapabilities</span><span class="p">,</span>
     <span class="p">):</span>
-
         <span class="bp">self</span><span class="o">.</span><span class="n">doc</span> <span class="o">=</span> <span class="n">doc</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">location</span> <span class="o">=</span> <span class="n">location</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">match</span> <span class="o">=</span> <span class="n">match</span>
@@ -608,7 +603,6 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">append</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="n">Diagnostic</span><span class="p">):</span>
-
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">Diagnostic</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Expected Diagnostic&quot;</span><span class="p">)</span>
 
@@ -987,7 +981,6 @@
             <span class="k">return</span> <span class="s2">&quot;rst&quot;</span>
 
         <span class="k">if</span> <span class="n">loctype</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">&quot;.py&quot;</span><span class="p">,</span> <span class="s2">&quot;py&quot;</span><span class="p">,</span> <span class="s2">&quot;python&quot;</span><span class="p">}:</span>
-
             <span class="c1"># Let&#39;s count how many pairs of triple quotes are above us in the file</span>
             <span class="c1"># even =&gt; we&#39;re outside a docstring</span>
             <span class="c1"># odd  =&gt; we&#39;re within a docstring</span>
@@ -1053,7 +1046,6 @@
 
 
 <span class="k">def</span> <span class="nf">normalise_uri</span><span class="p">(</span><span class="n">uri</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-
     <span class="n">uri</span> <span class="o">=</span> <span class="n">Uri</span><span class="o">.</span><span class="n">from_fs_path</span><span class="p">(</span><span class="n">Uri</span><span class="o">.</span><span class="n">to_fs_path</span><span class="p">(</span><span class="n">uri</span><span class="p">))</span>
 
     <span class="c1"># Paths on windows are case insensitive.</span>
@@ -1077,7 +1069,6 @@
 
     <span class="n">args</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">type_</span> <span class="ow">in</span> <span class="n">parameters</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-
         <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">server</span><span class="o">.</span><span class="vm">__class__</span><span class="p">,</span> <span class="n">type_</span><span class="p">):</span>
             <span class="n">args</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">server</span>
             <span class="k">continue</span>

@@ -16,36 +16,35 @@ nvim-lspconfig
 
 <span class="k">let</span> mapleader<span class="p">=</span><span class="s1">&#39;&lt;space&gt;&#39;</span>
 
-<span class="k">call</span> plug#begin<span class="p">(</span><span class="s1">&#39;./plugged&#39;</span><span class="p">)</span>
-
-Plug <span class="s1">&#39;neovim/nvim-lspconfig&#39;</span>
-
-<span class="k">call</span> plug#<span class="k">end</span><span class="p">()</span>
-
 <span class="k">lua</span> <span class="p">&lt;&lt;</span> EOF
 local lspconfig <span class="p">=</span> require<span class="p">(</span><span class="s1">&#39;lspconfig&#39;</span><span class="p">)</span>
 
+local keymap_opts <span class="p">=</span> { <span class="nb">noremap</span> <span class="p">=</span> true<span class="p">,</span> <span class="k">silent</span> <span class="p">=</span> true}
+<span class="k">vim</span>.<span class="nb">keymap</span>.<span class="k">set</span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;space&gt;e&#39;</span><span class="p">,</span> <span class="k">vim</span>.diagnostic.open_float<span class="p">,</span> keymap_opts<span class="p">)</span>
+<span class="k">vim</span>.<span class="nb">keymap</span>.<span class="k">set</span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;[d&#39;</span><span class="p">,</span> <span class="k">vim</span>.diagnostic.goto_prev<span class="p">,</span> keymap_opts<span class="p">)</span>
+<span class="k">vim</span>.<span class="nb">keymap</span>.<span class="k">set</span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;]d&#39;</span><span class="p">,</span> <span class="k">vim</span>.diagnostic.goto_next<span class="p">,</span> keymap_opts<span class="p">)</span>
+<span class="k">vim</span>.<span class="nb">keymap</span>.<span class="k">set</span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;space&gt;q&#39;</span><span class="p">,</span> <span class="k">vim</span>.diagnostic.setloclist<span class="p">,</span> keymap_opts<span class="p">)</span>
+
+local on_attach <span class="p">=</span> <span class="k">function</span><span class="p">(</span>client<span class="p">,</span> bufnr<span class="p">)</span>
+<span class="k">end</span>
+
 lspconfig.esbonio.setup {
-  <span class="p">--</span> The following <span class="k">is</span> based <span class="k">on</span> the example `on_attach` <span class="k">function</span> found <span class="k">in</span> nvim<span class="p">-</span>lspconfig&#39;s README
-  <span class="p">--</span> https:<span class="sr">//</span>github.<span class="k">com</span><span class="sr">/neovim/</span>nvim<span class="p">-</span>lspconfig/#keybindings<span class="p">-</span>and<span class="p">-</span>completion
-  <span class="p">--</span>
-  <span class="p">--</span> Only the methods currently supported by the <span class="k">language</span> server are bound.
+  cmd <span class="p">=</span> { <span class="s1">&#39;esbonio&#39;</span> }<span class="p">,</span>
+  init_options <span class="p">=</span> {
+    server <span class="p">=</span> {
+      completion <span class="p">=</span> {
+        preferredInsertBehavior <span class="p">=</span> <span class="s1">&#39;insert&#39;</span>
+      }
+    }
+  }<span class="p">,</span>
   on_attach <span class="p">=</span> <span class="k">function</span><span class="p">(</span>client<span class="p">,</span> bufnr<span class="p">)</span>
-    local <span class="k">function</span> buf_set_keymap<span class="p">(</span>...<span class="p">)</span> <span class="k">vim</span>.api.nvim_buf_set_keymap<span class="p">(</span>bufnr<span class="p">,</span> ...<span class="p">)</span> <span class="k">end</span>
-    local <span class="k">function</span> buf_set_option<span class="p">(</span>...<span class="p">)</span> <span class="k">vim</span>.api.nvim_buf_set_option<span class="p">(</span>bufnr<span class="p">,</span> ...<span class="p">)</span> <span class="k">end</span>
+    <span class="k">vim</span>.api.nvim_buf_set_option<span class="p">(</span>bufnr<span class="p">,</span> <span class="s1">&#39;omnifunc&#39;</span><span class="p">,</span> <span class="s1">&#39;v:lua.vim.lsp.omnifunc&#39;</span><span class="p">)</span>
 
-    <span class="p">--</span> Enable completion triggered by <span class="p">&lt;</span><span class="k">c</span><span class="p">-</span><span class="k">x</span><span class="p">&gt;&lt;</span><span class="k">c</span><span class="p">-</span><span class="k">o</span><span class="p">&gt;</span>
-    buf_set_option<span class="p">(</span><span class="s1">&#39;omnifunc&#39;</span><span class="p">,</span> <span class="s1">&#39;v:lua.vim.lsp.omnifunc&#39;</span><span class="p">)</span>
-
-    <span class="p">--</span> Mappings.
-    local opts <span class="p">=</span> { <span class="nb">noremap</span><span class="p">=</span>true<span class="p">,</span> <span class="k">silent</span><span class="p">=</span>true }
-
-    <span class="p">--</span> See `:help <span class="k">vim</span>.<span class="nb">lsp</span>.*` <span class="k">for</span> documentation <span class="k">on</span> any of the <span class="k">below</span> functions
-    buf_set_keymap<span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;gd&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;cmd&gt;lua vim.lsp.buf.definition()&lt;CR&gt;&#39;</span><span class="p">,</span> opts<span class="p">)</span>
-    buf_set_keymap<span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;space&gt;e&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;cmd&gt;lua vim.lsp.diagnostic.show_line_diagnostics()&lt;CR&gt;&#39;</span><span class="p">,</span> opts<span class="p">)</span>
-    buf_set_keymap<span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;[d&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;cmd&gt;lua vim.lsp.diagnostic.goto_prev()&lt;CR&gt;&#39;</span><span class="p">,</span> opts<span class="p">)</span>
-    buf_set_keymap<span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;]d&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;cmd&gt;lua vim.lsp.diagnostic.goto_next()&lt;CR&gt;&#39;</span><span class="p">,</span> opts<span class="p">)</span>
-    buf_set_keymap<span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;space&gt;q&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;cmd&gt;lua vim.lsp.diagnostic.set_loclist()&lt;CR&gt;&#39;</span><span class="p">,</span> opts<span class="p">)</span>
+    local bufopts <span class="p">=</span> { <span class="nb">noremap</span><span class="p">=</span>true<span class="p">,</span> <span class="k">silent</span><span class="p">=</span>true<span class="p">,</span> buffer<span class="p">=</span>bufnr }
+    <span class="k">vim</span>.<span class="nb">keymap</span>.<span class="k">set</span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;gd&#39;</span><span class="p">,</span> <span class="k">vim</span>.<span class="nb">lsp</span>.<span class="k">buf</span>.definition<span class="p">,</span> bufopts<span class="p">)</span>
+    <span class="k">vim</span>.<span class="nb">keymap</span>.<span class="k">set</span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;gi&#39;</span><span class="p">,</span> <span class="k">vim</span>.<span class="nb">lsp</span>.<span class="k">buf</span>.implementation<span class="p">,</span> bufopts<span class="p">)</span>
+    <span class="k">vim</span>.<span class="nb">keymap</span>.<span class="k">set</span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;gh&#39;</span><span class="p">,</span> <span class="k">vim</span>.<span class="nb">lsp</span>.<span class="k">buf</span>.hover<span class="p">,</span> bufopts<span class="p">)</span>
+    <span class="k">vim</span>.<span class="nb">keymap</span>.<span class="k">set</span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;leader&gt;ca&#39;</span><span class="p">,</span> <span class="k">vim</span>.<span class="nb">lsp</span>.<span class="k">buf</span>.code_action<span class="p">,</span> bufopts<span class="p">)</span>
 
   <span class="k">end</span>
 }

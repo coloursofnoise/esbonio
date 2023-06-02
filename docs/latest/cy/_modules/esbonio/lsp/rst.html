@@ -657,7 +657,7 @@
 
     <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">InitializeParams</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">user_config</span> <span class="o">=</span> <span class="n">converter</span><span class="o">.</span><span class="n">structure</span><span class="p">(</span>
-            <span class="n">params</span><span class="o">.</span><span class="n">initialization_options</span><span class="p">,</span> <span class="n">InitializationOptions</span>
+            <span class="n">params</span><span class="o">.</span><span class="n">initialization_options</span> <span class="ow">or</span> <span class="p">{},</span> <span class="n">InitializationOptions</span>
         <span class="p">)</span>
         <span class="n">setup_logging</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_config</span><span class="o">.</span><span class="n">server</span><span class="p">)</span>
 
